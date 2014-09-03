@@ -8,8 +8,7 @@ autopublish
 insecure
 coffeescript
 mizzao:bootstrap-3
-mrt:accounts-ui-bs3-and-blaze
 accounts-password
 accounts-google
 accounts-github
-
+rajit:accounts-ui-bootstrap-3

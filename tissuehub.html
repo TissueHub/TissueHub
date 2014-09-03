@@ -3,13 +3,16 @@
     <link rel="icon" sizes="16x16 32x32" href="/favicon.ico?v=2">
 </head>
 
-<body>
-<div class="container">
-    {{> header}}
-    <h1>Welcome to TissueHub!</h1>
+<template name="layout">
+    <div class="container">
+        {{> header}}
+        {{> yield}}
+    </div>
+</template>
 
-</div>
-</body>
+<template name="home">
+    <h1>Welcome to TissueHub!</h1>
+</template>
 
 <template name="header">
     <nav class="navbar navbar-default" role="navigation">

@@ -1,14 +1,37 @@
 <head>
-  <title>tissuehub</title>
+    <title>TissueHub</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+<div class="container">
+    {{> header}}
+    <h1>Welcome to TissueHub!</h1>
 
-  {{> hello}}
+</div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="header">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tissuehub-collapsible-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">TissueHub</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="tissuehub-collapsible-nav">
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {{> loginButtons }}
+                </ul>
+            </div>
+        </div>
+    </nav>
 </template>

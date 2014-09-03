@@ -13,4 +13,5 @@ accounts-google
 accounts-github
 rajit:accounts-ui-bootstrap-3
 iron:router
+meteorhacks:kadira
 

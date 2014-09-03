@@ -1,0 +1,9 @@
+<template name="labelSet">
+    {{#each labels}}
+        {{> labelIndividual}}
+    {{/each}}
+</template>
+
+<template name="labelIndividual">
+    <span class="label label-default">{{.}}</span>
+</template>

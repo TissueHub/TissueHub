@@ -5,3 +5,8 @@ Router.map ->
     @route "home",
         path: "/"
         template: "home"
+    @route "listCollections",
+        path: "/collections"
+        template: "listcollections"
+        waitOn: ->
+            Meteor.subscribe "collections"

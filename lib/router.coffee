@@ -10,3 +10,6 @@ Router.map ->
         template: "listcollections"
         waitOn: ->
             Meteor.subscribe "collections"
+    @route "addCollection",
+        path: "/collections/new"
+        template: "addcollection"

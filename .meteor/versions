@@ -61,6 +61,7 @@ spacebars-compiler@1.0.1
 spacebars@1.0.0
 srp@1.0.0
 standard-app-packages@1.0.0
+steeve:simple-bootstrap3-alerts@0.0.2
 stylus@1.0.3
 templating@1.0.4
 ui@1.0.0

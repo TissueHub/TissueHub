@@ -30,7 +30,7 @@ if Collections.find().count() is 0
             phenotypes: [
                 "Rheumatoid arthritis"
             ]
-            specimentTypes: [
+            specimenTypes: [
                 "DNA"
                 "serial serum samples"
             ]
@@ -45,7 +45,7 @@ if Collections.find().count() is 0
                 "Rheumatoid arthritis"
                 "African American"
             ]
-            specimentTypes: [
+            specimenTypes: [
                 "DNA"
                 "Serum"
                 "Plasma"
@@ -64,7 +64,7 @@ if Collections.find().count() is 0
                 "Newly diagnosed with breast cancer"
                 "90% Caucasian"
             ]
-            specimentTypes: [
+            specimenTypes: [
                 "Sera"
             ]
             participantCount: 90
@@ -76,7 +76,7 @@ if Collections.find().count() is 0
             description: null
             phenotypes: [
             ]
-            specimentTypes: [
+            specimenTypes: [
                 "Genomic DNA"
                 "Serum"
                 "Plasma"

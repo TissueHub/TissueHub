@@ -1,5 +1,7 @@
 Router.configure
     layoutTemplate: "layout"
+    waitOn: ->
+        Meteor.subscribe "collections"
 
 Router.map ->
     @route "home",
@@ -8,8 +10,6 @@ Router.map ->
     @route "listCollections",
         path: "/collections"
         template: "listcollections"
-        waitOn: ->
-            Meteor.subscribe "collections"
     @route "addCollection",
         path: "/collections/new"
         template: "addcollection"

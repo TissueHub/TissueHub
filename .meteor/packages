@@ -4,8 +4,6 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
 coffeescript
 mizzao:bootstrap-3
 accounts-password
@@ -15,4 +13,3 @@ rajit:accounts-ui-bootstrap-3
 iron:router
 meteorhacks:kadira
 steeve:simple-bootstrap3-alerts
-

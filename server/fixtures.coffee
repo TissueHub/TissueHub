@@ -34,6 +34,12 @@ if Collections.find().count() is 0
                 "DNA"
                 "serial serum samples"
             ]
+            ethnicities: [
+                "African American"
+                "European American"
+            ]
+            contactEmail: "radar-admin@example.edu"
+            hostInstitution: "Example University"
             participantCount: 250
             recruitmentStatus: "active"
             dateCreated: now
@@ -53,6 +59,12 @@ if Collections.find().count() is 0
                 "Clinical Data"
                 "Radiographic Data"
             ]
+            ethnicities: [
+                "Native American"
+                "Asian"
+            ]
+            contactEmail: "CLEAR-admin@example.edu"
+            hostInstitution: "Example University"
             participantCount: 1610
             recruitmentStatus: "closed"
             dateCreated: now - 25 * week
@@ -67,6 +79,11 @@ if Collections.find().count() is 0
             specimenTypes: [
                 "Sera"
             ]
+            ethnicities: [
+                "European American"
+            ]
+            contactEmail: "strong@sample.edu"
+            hostInstitution: "Sample State University"
             participantCount: 90
             recruitmentStatus: ""
             dateCreated: now - 10 * week
@@ -82,6 +99,11 @@ if Collections.find().count() is 0
                 "Plasma"
                 "Buffy Coats"
             ]
+            ethnicities: [
+                "Pacific Islander"
+            ]
+            contactEmail: "strong@sample.edu"
+            hostInstitution: "UAB"
             participantCount: null
             recruitmentStatus: "active"
             dateCreated: now - 15 * week

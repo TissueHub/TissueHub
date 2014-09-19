@@ -1,0 +1,23 @@
+<template name="viewcollection">
+    <h2>{{name}}  </h2>
+    <p><a href="{{pathFor 'listCollections'}}">Back to Collection List</a></p>
+    <p>{{description}}</p>
+    <div class="row">
+        <div class="col-sm-2"><strong>Contact Email</strong></div>
+        <div class="col-sm-9"><a href="mailto:{{contactEmail}}">{{contactEmail}}</a></div>
+    </div>
+    {{> attributeRow attribute="Host Institution" value=hostInstitution}}
+    {{> attributeRow attribute="Participant Count" value=participantCount}}
+    <div class="row">
+        <div class="col-sm-2"><strong>Ethnicities</strong></div>
+        <div class="col-sm-9">{{> labelSet labels=ethnicities}}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><strong>Phenotypes</strong></div>
+        <div class="col-sm-9">{{> labelSet labels=phenotypes}}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><strong>Specimen Types</strong></div>
+        <div class="col-sm-9">{{> labelSet labels=specimenTypes}}</div>
+    </div>
+</template>

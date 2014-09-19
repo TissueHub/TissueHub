@@ -31,7 +31,7 @@
 
 <template name="collectionRow">
     <tr>
-        <td>{{name}}</td>
+        <td><a href="{{pathFor 'viewCollection'}}">{{name}}</a></td>
         <td>{{description}}</td>
         <td>{{> labelSet labels=phenotypes}}</td>
         <td>{{> labelSet labels=specimenTypes}}</td>

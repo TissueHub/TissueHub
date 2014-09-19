@@ -1,0 +1,39 @@
+<template name="editcollection">
+    <form role="form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" name="name" placeholder="Collection name" value={{name}}>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" type="text" name="description" placeholder="Brief description of the collection" value={{description}}></textarea>
+        </div>
+        <div class="form-group">
+            <label for="contactEmail">Contact Email</label>
+            <input class="form-control" type="text" name="contactEmail" placeholder="Collection Contact Email" value={{contactEmail}}>
+        </div>
+        <div class="form-group">
+            <label for="hostInstitution">Host Institution</label>
+            <input class="form-control" type="text" name="hostInstitution" placeholder="Collection Host Institution" value={{hostInstitution}}>
+        </div>
+        <div class="form-group">
+            <label for="phenotypes">Phenotypes (comma separated)</label>
+            <input class="form-control" type="text" name="phenotypes" placeholder="Enter phenotyes in the collection" value={{phenotypes}}>
+        </div>
+        <div class="form-group">
+            <label for="specimenTypes">Specimen Types (comma separated)</label>
+            <input class="form-control" type="text" name="specimenTypes" placeholder="Enter the specimen types in the collection" value={{specimenTypes}}>
+        </div>
+        <div class="form-group">
+            <label for="ethnicities">Ethnicities (comma separated)</label>
+            <input class="form-control" type="text" name="ethnicities" placeholder="Enter the ethnicities in the collection" value={{ethnicities}}>
+        </div>
+        <div class="form-group">
+            <label for="participantCount">Participant Count</label>
+            <input class="form-control" type="text" name="participantCount" placeholder="Enter the approximate number of participants" value={{participantCount}}>
+        </div>
+        <button class="btn btn-primary" type="submit">Save Collection</button>
+        <a class="btn btn-default" href="{{pathFor 'viewCollection'}}">Cancel</a>
+    </form>
+</template>
+

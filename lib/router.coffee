@@ -17,3 +17,7 @@ Router.map ->
         path: "/collections/:_id"
         template: "viewcollection"
         data: -> Collections.findOne @params._id
+    @route "editCollection",
+        path: "/collections/:_id/edit"
+        template: "editcollection"
+        data: -> Collections.findOne @params._id

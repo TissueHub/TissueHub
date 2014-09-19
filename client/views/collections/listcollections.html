@@ -16,6 +16,7 @@
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Ethnicities</th>
                 <th>Phenotypes</th>
                 <th>Specimen Types</th>
                 <th>Participant Count</th>
@@ -33,6 +34,7 @@
     <tr>
         <td><a href="{{pathFor 'viewCollection'}}">{{name}}</a></td>
         <td>{{description}}</td>
+        <td>{{> labelSet labels=ethnicities}}</td>
         <td>{{> labelSet labels=phenotypes}}</td>
         <td>{{> labelSet labels=specimenTypes}}</td>
         <td>{{participantCount}}</td>

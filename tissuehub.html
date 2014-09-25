@@ -6,6 +6,11 @@
 <template name="layout">
     <div class="container">
         {{> header}}
+        <div class="alert alert-danger">
+            <h4>TissueHub Has Moved!</h4>
+            <p>Please visit our new home at <a class="alert-link" href="https://tissuehub.org">https://tissuehub.org</a></p>
+            <p>All previously entered data has been transferred. If you discover any issues, please contact <a class="alert-link" href="mailto:robbinsd@tissuehub.org">robbinsd@tissuehub.org</a></p>
+        </div>
         {{> alert}}
         {{> yield}}
         <hr id="end-of-content" />

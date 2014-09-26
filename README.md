@@ -1,6 +1,6 @@
 # TissueHub
 
-[Development Demo](http://tissuehub.meteor.com/ "TissueHub Demo Site")
+[Main Site](https://tissuehub.org/ "TissueHub App") | [Development](http://tissuehub.meteor.com/ "TissueHub Development Site")
 
 TissueHub aspires to be a socially federated storefront for biospecimen repositories of all sizes.
 

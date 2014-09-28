@@ -24,3 +24,6 @@ setFilters = (e) ->
 
 Template.listcollections.events
     "input [name=search]": setFilters
+
+Template.listcollections.rendered = ->
+    @$("[data-toggle='tooltip']").tooltip()

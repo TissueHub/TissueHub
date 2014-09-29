@@ -10,6 +10,7 @@ setFilters = (e) ->
     terms = $(e.target).val().split " "
     makefilter = (term) ->
         filter = $or: [
+            { hostInstitution: $regex: term, $options: "i" }
             { name: $regex: term, $options: "i" }
             { description: $regex: term, $options: "i" }
             { ethnicities: $regex: term, $options: "i" }

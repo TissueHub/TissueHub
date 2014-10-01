@@ -21,3 +21,6 @@ Router.map ->
         path: "/collections/:_id/edit"
         template: "editcollection"
         data: -> Collections.findOne @params._id
+
+Router.onAfterAction ->
+    ga? "send", "pageview"

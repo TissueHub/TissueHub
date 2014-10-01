@@ -10,6 +10,8 @@ Router.map ->
     @route "listCollections",
         path: "/collections"
         template: "listcollections"
+        onBeforeAction: ->
+            Session.set "searchTerms", @params.q
     @route "addCollection",
         path: "/collections/new"
         template: "addcollection"

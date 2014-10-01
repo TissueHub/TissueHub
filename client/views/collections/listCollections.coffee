@@ -5,9 +5,10 @@ Template.listcollections.helpers
             Collections.find filters
         else
             Collections.find()
+    searchTerms: -> Session.get "searchTerms"
 
-setFilters = (e) ->
-    terms = $(e.target).val().split " "
+setFilters = (e, t) ->
+    terms = $("[name=search]").val()
     makefilter = (term) ->
         filter = $or: [
             { hostInstitution: $regex: term, $options: "i" }
@@ -17,14 +18,17 @@ setFilters = (e) ->
             { phenotypes: $regex: term, $options: "i" }
             { specimenTypes: $regex: term, $options: "i" }
         ]
-    filters = $and: (makefilter term for term in terms when term)
+    filters = $and: (makefilter term for term in terms.split " " when term)
     if filters.$and.length > 0
         Session.set "collectionFilters", filters
+        window.history.pushState "listCollections", "TissueHub", Router.path "listCollections", null, query: "q=#{terms}"
     else
         Session.set "collectionFilters", null
+        window.history.pushState "listCollections", "TissueHub", Router.path "listCollections"
 
 Template.listcollections.events
     "input [name=search]": setFilters
 
 Template.listcollections.rendered = ->
     @$("[data-toggle='tooltip']").tooltip()
+    setFilters()

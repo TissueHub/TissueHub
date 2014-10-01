@@ -28,6 +28,10 @@ setFilters = (e, t) ->
 
 Template.listcollections.events
     "input [name=search]": setFilters
+    "click .label": (e) ->
+        label = $(e.target).text()
+        $("[name=search]").val "#{$("[name=search]").val()} #{label}"
+        setFilters()
 
 Template.listcollections.rendered = ->
     @$("[data-toggle='tooltip']").tooltip()

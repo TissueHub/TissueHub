@@ -1,5 +1,6 @@
 Router.configure
     layoutTemplate: "layout"
+    loadingTemplate: "loading"
     waitOn: ->
         Meteor.subscribe "collections"
 
@@ -26,3 +27,5 @@ Router.map ->
 
 Router.onAfterAction ->
     ga? "send", "pageview"
+
+Router.onBeforeAction "loading"

@@ -32,6 +32,10 @@
             <label for="participantCount">Participant Count</label>
             <input class="form-control" type="text" name="participantCount" placeholder="Enter the approximate number of participants">
         </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" type="text" name="notes" placeholder="Enter any additional notes about this collection"></textarea>
+        </div>
         <button class="btn btn-primary" type="submit">Save Collection</button>
         <a class="btn btn-default" href="{{pathFor 'listCollections'}}">Cancel</a>
     </form>

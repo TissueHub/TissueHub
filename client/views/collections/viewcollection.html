@@ -24,4 +24,8 @@
         <div class="col-sm-2"><strong>Specimen Types</strong></div>
         <div class="col-sm-9">{{> labelSet labels=specimenTypes}}</div>
     </div>
+    {{#if notes}}
+        <h4>Notes</h4>
+        <p>{{notes}}</p>
+    {{/if}}
 </template>

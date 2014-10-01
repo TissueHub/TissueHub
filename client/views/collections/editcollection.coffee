@@ -11,6 +11,7 @@ Template.editcollection.events
             specimenTypes: $(e.target).find("[name=specimenTypes]").val().split(",")
             ethnicities: $(e.target).find("[name=ethnicities]").val().split(",")
             participantCount: $(e.target).find("[name=participantCount]").val()
+            notes: $(e.target).find("[name=notes]").val()
         Collections.update collectionId, {$set: collection}, (error) ->
             if error then Alert.add error.message, "danger"
             else

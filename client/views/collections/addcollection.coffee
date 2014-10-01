@@ -10,6 +10,7 @@ Template.addcollection.events
             specimenTypes: $(e.target).find("[name=specimenTypes]").val().split(",")
             ethnicities: $(e.target).find("[name=ethnicities]").val().split(",")
             participantCount: $(e.target).find("[name=participantCount]").val()
+            notes: $(e.target).find("[name=notes]").val()
         Meteor.call "collection", collection, (error, id) ->
             if error then Alert.add error.message, "danger"
             else

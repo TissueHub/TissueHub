@@ -24,6 +24,14 @@ Router.map ->
         path: "/collections/:_id/edit"
         template: "editcollection"
         data: -> Collections.findOne @params._id
+    @route "viewProfile",
+        path: "/profile"
+        template: "viewprofile"
+        data: -> Meteor.user()
+    @route "editProfile",
+        path: "/profile/edit"
+        template: "editprofile"
+        data: -> Meteor.user()
 
 Router.onAfterAction ->
     ga? "send", "pageview"

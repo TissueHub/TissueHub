@@ -56,9 +56,14 @@
                     <li><a href="{{pathFor 'listCollections'}}">Collections</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    {{> userButtons }}
                     {{> loginButtons }}
                 </ul>
             </div>
         </div>
     </nav>
+</template>
+
+<template name="userButtons">
+    <li><a href="{{pathFor 'viewProfile'}}">My Profile</a></li>
 </template>

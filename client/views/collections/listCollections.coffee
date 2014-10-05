@@ -32,6 +32,8 @@ Template.listcollections.events
         label = $(e.target).text()
         $("[name=search]").val "#{$("[name=search]").val()} #{label}"
         setFilters()
+    "click .share": (e) ->
+        window.prompt "Copy the URL below to share your search", window.location.href
 
 Template.listcollections.rendered = ->
     @$("[data-toggle='tooltip']").tooltip()

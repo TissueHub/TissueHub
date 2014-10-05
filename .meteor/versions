@@ -48,6 +48,7 @@ mizzao:bootstrap-3@3.2.0
 mobile-status-bar@1.0.0
 mongo-livedata@1.0.5
 mongo@1.0.6
+natestrauser:select2@3.4.9
 npm-bcrypt@0.7.7
 oauth2@1.1.0
 oauth@1.1.0
@@ -77,3 +78,4 @@ underscore@1.0.0
 url@1.0.0
 webapp-hashing@1.0.0
 webapp@1.1.2
+zimme:select2-bootstrap3-css@1.4.1

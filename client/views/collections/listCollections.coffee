@@ -11,19 +11,13 @@ makeFiltersFromTerms = (terms) ->
     filters = $and: (makefilter term for term in terms.split "," when term)
     filters
 
-updateUrlWithSearchTerms = (terms) ->
-    if terms
-        window.history.pushState "listCollections", "TissueHub", Router.path "listCollections", null, query: "q=#{terms}"
-    else
-        window.history.pushState "listCollections", "TissueHub", Router.path "listCollections"
-
 setTerms = ->
-    Session.set "searchTerms", $("[name=search]").val()
+    terms = $("[name=search]").val()
+    if terms then Router.go "listCollections", null, query: "q=#{terms}" else Router.go "listCollections"
 
 Template.listcollections.helpers
     collections: ->
         terms = Session.get "searchTerms"
-        updateUrlWithSearchTerms terms
         if terms
             Collections.find makeFiltersFromTerms terms
         else

@@ -65,5 +65,7 @@
 </template>
 
 <template name="userButtons">
+    {{#if currentUser}}
     <li><a href="{{pathFor 'viewProfile'}}">My Profile</a></li>
+    {{/if}}
 </template>

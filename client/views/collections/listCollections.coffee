@@ -36,9 +36,11 @@ Template.listcollections.events
 
 Template.listcollections.rendered = ->
     @$("[data-toggle='tooltip']").tooltip()
-    @$("[name=search]").select2
-        tags: (Session.get "searchTerms")?.split(",") or []
-        multiple: true
-        simple_tags: true
-        tokenSeparators: [" "]
-        #setFilters()
+    @$ "[name=search]"
+        .val Session.get "searchTerms"
+        .select2
+            tags: []
+            multiple: true
+            simple_tags: true
+            tokenSeparators: [" "]
+            dropdownCssClass: 'hidden' # Hides the Select2 dropdown when typing.

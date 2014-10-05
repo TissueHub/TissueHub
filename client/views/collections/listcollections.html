@@ -1,23 +1,17 @@
 <template name="listcollections">
     <span class="pull-right">
-        <form class="form-inline">
-            <div class="form-group">
-                <label class="sr-only" for="search">Search Collections</label>
-                <div class="input-group">
-                    <input class="form-control search" type="text" name="search" placeholder="Search Collections" value={{searchTerms}}>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" title="Spaces separate search terms." data-toggle="tooltip">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                        </button>
-                    </span>
-                </div>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-default" href="{{pathFor 'addCollection'}}" title="Add Collection" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-        </form>
+        <a class="btn btn-default" href="{{pathFor 'addCollection'}}" title="Add Collection" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></a>
     </span>
     <h2>Collections</h2>
+    <label class="sr-only" for="search">Search Collections</label>
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" title="Spaces separate search terms." data-toggle="tooltip">
+                <span class="glyphicon glyphicon-info-sign"></span>
+            </button>
+        </span>
+        <input class="form-control search" type="text" name="search" placeholder="Search Collections" value={{searchTerms}}>
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>

@@ -1,8 +1,6 @@
 Router.configure
     layoutTemplate: "layout"
     loadingTemplate: "loading"
-    waitOn: ->
-        Meteor.subscribe "collections"
 
 Router.map ->
     @route "home",
@@ -11,6 +9,8 @@ Router.map ->
     @route "listCollections",
         path: "/collections"
         template: "listcollections"
+        waitOn: ->
+            Meteor.subscribe "collections"
         onBeforeAction: ->
             Session.set "searchTerms", @params.q
     @route "addCollection",
@@ -19,10 +19,14 @@ Router.map ->
     @route "viewCollection",
         path: "/collections/:_id"
         template: "viewcollection"
+        waitOn: ->
+            Meteor.subscribe "collections"
         data: -> Collections.findOne @params._id
     @route "editCollection",
         path: "/collections/:_id/edit"
         template: "editcollection"
+        waitOn: ->
+            Meteor.subscribe "collections"
         data: -> Collections.findOne @params._id
     @route "viewProfile",
         path: "/profile"

@@ -1,1 +1,1 @@
-Meteor.publish "collections", -> Collections.find()
+Meteor.publish "collections", (options) -> Collections.find {}, options

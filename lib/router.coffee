@@ -10,7 +10,18 @@ Router.map ->
         path: "/collections"
         template: "listcollections"
         waitOn: ->
-            Meteor.subscribe "collections"
+            options =
+                sort: dateCreated: -1
+                limit: 25
+            if @params.q then options.filter = Th.makeFiltersFromTerms @params.q
+            Meteor.subscribe "collections", options
+        data: ->
+            options =
+                sort: dateCreated: -1
+                limit: 25
+            if @params.q then options.filter = Th.makeFiltersFromTerms @params.q
+            data =
+                collections: Collections.find options.filter or {}, options
         onBeforeAction: ->
             Session.set "searchTerms", @params.q
     @route "addCollection",

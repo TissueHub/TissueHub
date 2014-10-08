@@ -2,14 +2,6 @@ setTerms = ->
     terms = $("[name=search]").val()
     if terms then Router.go "listCollections", null, query: "q=#{terms}" else Router.go "listCollections"
 
-Template.listcollections.helpers
-    collections: ->
-        terms = Session.get "searchTerms"
-        if terms
-            Collections.find Th.makeFiltersFromTerms terms
-        else
-            Collections.find()
-
 Template.listcollections.events
     "input [name=search]": setTerms
     "change [name=search]": setTerms

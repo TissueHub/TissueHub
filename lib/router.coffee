@@ -1,3 +1,21 @@
+CollectionListController = RouteController.extend
+    template: "listcollections"
+    increment: 5
+    getOptions: ->
+        options =
+            sort: dateCreated: -1
+            limit: 25
+        if @params.q then options.filter = Th.makeFiltersFromTerms @params.q
+        options
+    waitOn: ->
+        options = @getOptions()
+        Meteor.subscribe "collections", options
+    data: ->
+        options = @getOptions()
+        collections: Collections.find options?.filter or {}, options
+    onBeforeAction: ->
+        Session.set "searchTerms", @params.q
+
 Router.configure
     layoutTemplate: "layout"
     loadingTemplate: "loading"
@@ -8,22 +26,7 @@ Router.map ->
         template: "home"
     @route "listCollections",
         path: "/collections"
-        template: "listcollections"
-        waitOn: ->
-            options =
-                sort: dateCreated: -1
-                limit: 25
-            if @params.q then options.filter = Th.makeFiltersFromTerms @params.q
-            Meteor.subscribe "collections", options
-        data: ->
-            options =
-                sort: dateCreated: -1
-                limit: 25
-            if @params.q then options.filter = Th.makeFiltersFromTerms @params.q
-            data =
-                collections: Collections.find options.filter or {}, options
-        onBeforeAction: ->
-            Session.set "searchTerms", @params.q
+        controller: CollectionListController
     @route "addCollection",
         path: "/collections/new"
         template: "addcollection"

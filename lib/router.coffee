@@ -1,18 +1,25 @@
 CollectionListController = RouteController.extend
     template: "listcollections"
-    increment: 5
+    increment: 25
     getOptions: ->
         options =
             sort: dateCreated: -1
-            limit: 25
+            limit: parseInt(@params.limit,10) or 25
         if @params.q then options.filter = Th.makeFiltersFromTerms @params.q
         options
     waitOn: ->
         options = @getOptions()
         Meteor.subscribe "collections", options
+    collections: ->
+        options = @getOptions()
+        Collections.find options?.filter or {}, options
     data: ->
         options = @getOptions()
-        collections: Collections.find options?.filter or {}, options
+        moreCollections = @collections().count() is options.limit
+        nextPath = @route.path null, query: limit: options.limit + @increment
+        data =
+            collections: @collections()
+            nextPath: nextPath
     onBeforeAction: ->
         Session.set "searchTerms", @params.q
 

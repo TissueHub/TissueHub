@@ -35,6 +35,9 @@
             {{/each}}
         </tbody>
     </table>
+    {{#if nextPath}}
+        <a class="btn btn-primary" href="{{nextPath}}">Load More</a>
+    {{/if}}
 </template>
 
 <template name="collectionRow">

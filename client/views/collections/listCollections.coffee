@@ -3,7 +3,9 @@ setTerms = ->
     if terms then Router.go "listCollections", null, query: "q=#{terms}" else Router.go "listCollections"
 
 Template.listcollections.helpers
-    collections: -> Collections.find()
+    collections: ->
+        options = Session.get "options"
+        Collections.find options?.filter or {}
     moreCollections: -> Collections.find().count() is Session.get("options")?.limit
 
 Template.listcollections.events

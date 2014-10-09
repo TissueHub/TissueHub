@@ -1,1 +1,2 @@
-Meteor.publish "collections", -> Collections.find()
+Meteor.publish "collections", (options) ->
+    if options then Collections.find options?.filter or {}, options else Collections.find()

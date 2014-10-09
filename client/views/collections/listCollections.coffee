@@ -1,27 +1,12 @@
-makeFiltersFromTerms = (terms) ->
-    makefilter = (term) ->
-        filter = $or: [
-            { hostInstitution: $regex: term, $options: "i" }
-            { name: $regex: term, $options: "i" }
-            { description: $regex: term, $options: "i" }
-            { ethnicities: $regex: term, $options: "i" }
-            { phenotypes: $regex: term, $options: "i" }
-            { specimenTypes: $regex: term, $options: "i" }
-        ]
-    filters = $and: (makefilter term for term in terms.split "," when term)
-    filters
-
 setTerms = ->
     terms = $("[name=search]").val()
     if terms then Router.go "listCollections", null, query: "q=#{terms}" else Router.go "listCollections"
 
 Template.listcollections.helpers
     collections: ->
-        terms = Session.get "searchTerms"
-        if terms
-            Collections.find makeFiltersFromTerms terms
-        else
-            Collections.find()
+        options = Session.get "options"
+        Collections.find options?.filter or {}
+    moreCollections: -> Collections.find().count() is Session.get("options")?.limit
 
 Template.listcollections.events
     "input [name=search]": setTerms
@@ -33,6 +18,11 @@ Template.listcollections.events
             .trigger "change"
     "click .share": (e) ->
         window.prompt "Copy the URL below to share your search", window.location.href
+    "click [name=more]": (e, t) ->
+        options = Session.get "options"
+        options.limit += 25
+        Session.set "options", options
+        Meteor.subscribe "collections", options
 
 Template.listcollections.rendered = ->
     @$("[data-toggle='tooltip']").tooltip()

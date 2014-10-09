@@ -1,6 +1,12 @@
 <template name="attributeRow">
     <div class="row">
         <div class="col-sm-2"><strong>{{attribute}}</strong></div>
-        <div class="col-sm-9">{{value}}</div>
+        <div class="col-sm-9">
+            {{#if UI.contentBlock}}
+                {{> UI.contentBlock}}
+            {{else}}
+                {{value}}
+            {{/if}}
+        </div>
     </div>
 </template>

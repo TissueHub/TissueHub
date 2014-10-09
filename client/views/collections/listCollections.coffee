@@ -2,6 +2,10 @@ setTerms = ->
     terms = $("[name=search]").val()
     if terms then Router.go "listCollections", null, query: "q=#{terms}" else Router.go "listCollections"
 
+Template.listcollections.helpers
+    collections: -> Collections.find()
+    moreCollections: -> Collections.find().count() is Session.get("options")?.limit
+
 Template.listcollections.events
     "input [name=search]": setTerms
     "change [name=search]": setTerms
@@ -12,6 +16,11 @@ Template.listcollections.events
             .trigger "change"
     "click .share": (e) ->
         window.prompt "Copy the URL below to share your search", window.location.href
+    "click [name=more]": (e, t) ->
+        options = Session.get "options"
+        options.limit += 25
+        Session.set "options", options
+        Meteor.subscribe "collections", options
 
 Template.listcollections.rendered = ->
     @$("[data-toggle='tooltip']").tooltip()

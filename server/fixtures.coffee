@@ -27,15 +27,16 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
     isa =
         profile:
             name: "Isa Tufayl"
-            email: "isa@tufayl.com"
+        email: "isa@tufayl.com"
         username: "isa"
         password: "password"
     isa._id = Accounts.createUser isa
+    Roles.addUsersToRoles isa._id, ["curator"]
 
     bob =
         profile:
             name: "Bob Tufayl"
-            email: "bob@tufayl.com"
+        email: "bob@tufayl.com"
         username: "bob"
         password: "password"
     bob._id = Accounts.createUser bob
@@ -43,10 +44,11 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
     admin =
         profile:
             name: "Admin"
-            email: "admin@example.com"
+        email: "admin@example.com"
         username: "admin"
         password: "password"
     admin._id = Accounts.createUser admin
+    Roles.addUsersToRoles admin._id, ["admin"]
 
     users = [ kallie, isa, bob, admin ]
 
@@ -188,7 +190,7 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
             phenotypes: takeAFew phenotypes, randomInt(1,4)
             ethnicities: takeAFew ethnicities, randomInt(1,4)
             specimenTypes: takeAFew specimenTypes, randomInt(1,4)
-            contactEmail: user.profile.email
+            contactEmail: user.profile.email || user.email
             hostInstitution: "UAB"
             participantCount: randomInt(100,5000)
             dateCreated: now - randomInt(0,96) * hour

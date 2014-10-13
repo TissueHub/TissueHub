@@ -53,9 +53,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="tissuehub-collapsible-nav">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{pathFor 'listCollections'}}">Collections</a></li>
+                    <li class="{{activeRouteClass 'listCollections'}}"><a href="{{pathFor 'listCollections'}}">Collections</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    {{> adminButtons}}
                     {{> userButtons }}
                     {{> loginButtons }}
                 </ul>
@@ -67,5 +68,11 @@
 <template name="userButtons">
     {{#if currentUser}}
     <li><a href="{{pathFor 'viewProfile'}}">My Profile</a></li>
+    {{/if}}
+</template>
+
+<template name="adminButtons">
+    {{#if isInRole "admin"}}
+        <li class="{{activeRouteClass 'admin'}}"><a href="{{pathFor 'admin'}}">Admin</a></li>
     {{/if}}
 </template>

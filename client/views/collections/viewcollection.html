@@ -1,5 +1,5 @@
 <template name="viewcollection">
-    {{#if ownCollection}}<span class="pull-right">
+    {{#if canEdit}}<span class="pull-right">
         <a class="btn btn-default" href="{{pathFor 'editCollection'}}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
         <a class="btn btn-danger delete" href="#"><span class="glyphicon glyphicon-remove"> Delete</span></a>
     </span>{{/if}}

@@ -2,7 +2,7 @@ Template.viewcollection.helpers
     canEdit: ->
         canEdit Meteor.user(), @
     mailtoLink: ->
-        contactEmail = @contactEmail.replace /\ /g, ""
+        contactEmail = @contactEmail?.replace /\ /g, ""
         "mailto:#{contactEmail}?cc=collaboration_coordination@tissuehub.org&subject=Collaboration%20on%20#{@name}"
 
 Template.viewcollection.events

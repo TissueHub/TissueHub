@@ -1,3 +1,6 @@
+Template.addcollection.helpers
+    initialContactEmail: -> getEmail Meteor.user()
+
 Template.addcollection.events
     "submit form": (e) ->
         e.preventDefault()

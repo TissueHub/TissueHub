@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+.main {
+    min-height: 400px;
+}

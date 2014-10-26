@@ -1,8 +1,10 @@
 <template name="layout">
     <div class="container">
-        {{> header}}
-        {{> alert}}
-        {{> yield}}
+        <div class="main">
+            {{> header}}
+            {{> alert}}
+            {{> yield}}
+        </div>
         <hr id="end-of-content" />
         {{> footer}}
     </div>

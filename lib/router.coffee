@@ -12,6 +12,7 @@ CollectionListController = RouteController.extend
         Meteor.subscribe "collections", @getAndSetOptions()
     onBeforeAction: ->
         Session.set "searchTerms", @params.q
+        @next()
 
 Router.configure
     layoutTemplate: "layout"
@@ -29,6 +30,7 @@ Router.map ->
                 @render @loadingTemplate
             else if not Roles.userIsInRole Meteor.user(), ["admin"]
                 @redirect "/"
+            @next()
     @route "listCollections",
         path: "/collections"
         controller: CollectionListController

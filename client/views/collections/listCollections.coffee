@@ -12,6 +12,7 @@ Template.listcollections.events
     "input [name=search]": setTerms
     "change [name=search]": setTerms
     "click .label": (e) ->
+        e.preventDefault()
         label = $(e.target).text()
         $("[name=search]")
             .val (if $("[name=search]").val() then "#{$("[name=search]").val()},#{label}" else label)

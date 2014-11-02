@@ -5,13 +5,14 @@ CollectionListController = RouteController.extend
         options =
             sort: dateCreated: -1
             limit: parseInt(@params.limit,10) or @increment
-        if @params.q then options.filter = Th.makeFiltersFromTerms @params.q
+        if @params.query.q then options.filter = Th.makeFiltersFromTerms @params.query.q
         Session.set "options", options
         options
     waitOn: ->
         Meteor.subscribe "collections", @getAndSetOptions()
     onBeforeAction: ->
-        Session.set "searchTerms", @params.q
+        Session.set "searchTerms", @params.query.q
+        @next()
 
 Router.configure
     layoutTemplate: "layout"
@@ -29,6 +30,7 @@ Router.map ->
                 @render @loadingTemplate
             else if not Roles.userIsInRole Meteor.user(), ["admin"]
                 @redirect "/"
+            @next()
     @route "listCollections",
         path: "/collections"
         controller: CollectionListController

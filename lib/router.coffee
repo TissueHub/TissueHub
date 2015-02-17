@@ -5,13 +5,13 @@ CollectionListController = RouteController.extend
         options =
             sort: dateCreated: -1
             limit: parseInt(@params.limit,10) or @increment
-        if @params.query.q then options.filter = Th.makeFiltersFromTerms @params.query.q
+        if @params.query?.q then options.filter = Th.makeFiltersFromTerms @params.query.q
         Session.set "options", options
         options
     waitOn: ->
         Meteor.subscribe "collections", @getAndSetOptions()
     onBeforeAction: ->
-        Session.set "searchTerms", @params.query.q
+        Session.set "searchTerms", @params.query?.q
         @next()
 
 Router.configure

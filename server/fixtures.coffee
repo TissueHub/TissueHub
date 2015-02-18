@@ -197,3 +197,9 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
             owner: user._id
 
     insertRandomCollection num for num in [0..100]
+
+if Meteor.isServer
+    # Fixtures
+    Meteor.methods
+        "/fixtures/removeTestUser": (email) ->
+            Meteor.users.remove emails: $elemMatch: address: email

@@ -6,6 +6,7 @@ module.exports = ->
 
     @Before =>
         next = arguments[arguments.length - 1]
+        @world.screenshotPath = "../../../../../tests/cucumber/screenshots"
         @world.xPathHelpers =
             linkXpath: (text) -> "//a[contains(text(),\"#{text}\")]"
             navXpath: (text) -> "//nav//a[contains(text(),\"#{text}\")]"

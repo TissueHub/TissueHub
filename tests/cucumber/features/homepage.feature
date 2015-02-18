@@ -2,7 +2,7 @@ Feature: TissueHub Homepage
 
     As a user of TissueHub
     I want an informative homepage
-    So that I can easily figure out what TissueHub is, who made it, and what I can do with it.
+    So that I can easily figure out what TissueHub is and what I can do with it.
 
     Scenario: The TissueHub title is displayed.
         Given I am on the home page

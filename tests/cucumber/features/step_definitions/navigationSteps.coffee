@@ -14,3 +14,8 @@ module.exports = ->
         selector = @world.xPathHelpers.linkXpath linkText
         @world.browser.click selector
             .call next
+
+    @When /^I click on the "([^"]*)" button$/, (linkText, next) =>
+        selector = @world.xPathHelpers.buttonXpath linkText
+        @world.browser.click selector
+            .call next

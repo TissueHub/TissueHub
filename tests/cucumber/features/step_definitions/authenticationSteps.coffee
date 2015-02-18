@@ -10,7 +10,13 @@ module.exports = ->
     @Given /^User "([^"]*)" does not exist$/, Meteor.wrapAsync (userID, next) =>
         connection = DDP.connect @world.cucumber.mirror.host
         connection.call "/fixtures/removeTestUser", Data[userID].email, (err, res) ->
-            if err then next.fail(err)
+            if err then next(err)
+            next()
+
+    @Given /^User "([^"]*)" exists$/, Meteor.wrapAsync (userID, next) =>
+        connection = DDP.connect @world.cucumber.mirror.host
+        connection.call "/fixtures/ensureUserExists", Data[userID], (err, res) ->
+            if err then next(err)
             next()
 
     @When /^Enter and submit "([^"]*)" details$/, (userID, next) =>

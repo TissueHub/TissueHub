@@ -12,3 +12,11 @@ Feature: Signing up, in, and out
         And I click on the "Create account" link
         And Enter and submit "New User 1" details
         Then I should be logged in as "New User 1"
+
+    Scenario: Signing in
+        Given I am on the home page
+        And I am logged out
+        And User "New User 1" exists
+        When I click on the "Sign in" link
+        And Enter and submit "New User 1" details
+        Then I should be logged in as "New User 1"

@@ -203,3 +203,7 @@ if Meteor.isServer
     Meteor.methods
         "/fixtures/removeTestUser": (email) ->
             Meteor.users.remove emails: $elemMatch: address: email
+        "/fixtures/ensureUserExists": (userDetails) ->
+            user = Meteor.users.find emails: $elemMatch: address: userDetails.email
+            if not user
+                user = Accounts.createUser userDetails

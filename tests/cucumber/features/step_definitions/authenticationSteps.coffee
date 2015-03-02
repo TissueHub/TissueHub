@@ -48,6 +48,7 @@ module.exports = ->
 
     @Then /^I should be logged out$/, (next) =>
         @world.browser
+            .waitForVisible @world.xPathHelpers.navXpath "Sign in"
             .executeAsync ((done) -> done Meteor.user()), (err, res) ->
                 assert !res.value, "Expected user to be null."
             .call next
@@ -62,4 +63,10 @@ Data =
             name: "Isa Tufayl"
         email: "isa@tufayl.com"
         username: "isa"
+        password: "password"
+    "Admin":
+        profile:
+            name: "Admin"
+        email: "admin@example.com"
+        username: "admin"
         password: "password"

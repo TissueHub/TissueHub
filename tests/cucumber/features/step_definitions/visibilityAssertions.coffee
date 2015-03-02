@@ -13,3 +13,9 @@ module.exports = ->
         @world.browser.isVisible selector, (err, isVisible) ->
             assert isVisible, "Expected nav #{navText} to be visible."
             next()
+
+    @Then /^I should see an alert "([^"]*)"$/, (alertText, next) =>
+        selector = @world.xPathHelpers.alertXpath alertText
+        @world.browser.isVisible selector, (err, isVisible) ->
+            assert isVisible, "Expected alert \"#{alertText}\" to be visible."
+            next()

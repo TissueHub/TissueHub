@@ -26,4 +26,4 @@ Feature: Signing up, in, and out
         And I am logged in as "Isa Tufayl"
         When I click on the Authentication Menu
         When I click on the "Sign out" button
-        Then I should be logged out
+        And I should be logged out

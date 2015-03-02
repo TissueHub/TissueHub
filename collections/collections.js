@@ -4,4 +4,3 @@ Collections.allow({
     update: canEdit,
     remove: canEdit
 });
-

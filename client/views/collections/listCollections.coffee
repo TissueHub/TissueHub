@@ -6,7 +6,9 @@ Template.listcollections.helpers
     collections: ->
         options = Session.get "options"
         Collections.find options?.filter or {}
-    moreCollections: -> Collections.find().count() is Session.get("options")?.limit
+    moreCollections: ->
+        # If we were given as many collections as the limit, there are probably more
+        Collections.find().count() is Session.get("options")?.limit
 
 Template.listcollections.events
     "input [name=search]": setTerms

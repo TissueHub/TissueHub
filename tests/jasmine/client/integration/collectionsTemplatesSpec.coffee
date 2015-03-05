@@ -1,26 +1,5 @@
 describe "Template listcollections", ->
 
-    renderTemplate = (data) ->
-        div = document.createElement "DIV"
-        if data
-            template = Blaze.renderWithData Template.listcollections, data, div
-        else
-            template = Blaze.render Template.listcollections, div
-        return [div, template]
-
-    xit "shows a list of collections", ->
-        data = collections: Help.data.collections
-        div = renderTemplate data
-        console.log div
-        expect($(div).find("tbody tr").length).toEqual 3
-
-    xit "shows the Load More button if there are more collections", ->
-        data = moreCollections: true
-        div = document.createElement "DIV"
-        Blaze.renderWithData Template.listcollections, data, div
-        console.log "Data:", data, "Div:", div
-        expect($(div).find("[name=\"more\"]").length).toEqual 3
-
     it "helper \"collections\" queries Collections.find", ->
         spyOn Collections, "find"
             .and.returnValue Help.data.collections
@@ -37,3 +16,28 @@ describe "Template listcollections", ->
         expect(result).toEqual true
         expect(Collections.find).toHaveBeenCalled()
         expect(Session.get).toHaveBeenCalled()
+
+    describe "renders", ->
+
+        collectionsSpy = moreCollectionsSpy = div = null
+
+        checkSpys = ->
+            expect(collectionsSpy).toHaveBeenCalled()
+            expect(moreCollectionsSpy).toHaveBeenCalled()
+
+        beforeEach ->
+            collectionsSpy = Help.spyOnHelper Template.listcollections, "collections", ->
+                return Help.data.collections
+            moreCollectionsSpy = Help.spyOnHelper Template.listcollections, "moreCollections", ->
+                return true
+
+        beforeEach ->
+            div = document.createElement "div"
+            Blaze.render Template.listcollections, div
+
+        it "the \"Load More\" button if there are more collections", ->
+            expect($(div).find("button[name=\"more\"]").length).toEqual 1
+            checkSpys()
+
+        it "the list of collections", ->
+            expect($(div).find("tbody tr").length).toEqual 3

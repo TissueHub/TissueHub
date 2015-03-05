@@ -1,19 +1,3 @@
-@Help =
-    loginUser: (user, done) ->
-        Meteor.loginWithPassword user.email, user.password, done
-    loginIsa: (done) ->
-        Help.loginUser Users["Isa Tufayl"], done  
-    loginAdmin: (done) ->
-        Help.loginUser Users["Admin"], done
-    logout: (done) ->
-        Meteor.logout done
-    getHelper: (template, helperName) ->
-        template.__helpers.get(helperName)
-    data:
-        users: Users
-        collections: Collections
-    
-
 Users =
     "New User 1":
         email: "newuser1@example.com"
@@ -103,3 +87,23 @@ Collections = [
         dateCreated: now - 10 * week
     }
 ]
+
+@Help =
+    loginUser: (user, done) ->
+        Meteor.loginWithPassword user.email, user.password, done
+    loginIsa: (done) ->
+        Help.loginUser Users["Isa Tufayl"], done
+    loginAdmin: (done) ->
+        Help.loginUser Users["Admin"], done
+    logout: (done) ->
+        Meteor.logout done
+    getHelper: (template, helperName) ->
+        template.__helpers.get(helperName)
+    spyOnHelper: (template, helperName, replacement) ->
+        spy = jasmine.createSpy helperName
+        if replacement then spy.and.callFake replacement
+        template.__helpers.set(helperName, spy)
+        return spy
+    data:
+        users: Users
+        collections: Collections

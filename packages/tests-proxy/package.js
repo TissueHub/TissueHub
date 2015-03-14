@@ -12,5 +12,6 @@ Package.onUse(function (api) {
 	api.add_files("tests/jasmine/client/integration/integrationHelpers.coffee",["client"]);
 	api.add_files("tests/jasmine/client/integration/layoutSpec.coffee",["client"]);
 	api.add_files("tests/jasmine/client/integration/navbarSpec.coffee",["client"]);
+	api.add_files("tests/jasmine/client/integration/viewcollectionSpec.coffee",["client"]);
 	api.add_files("tests/jasmine/server/integration/placeholderSpec.coffee",["server"]);
 });

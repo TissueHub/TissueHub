@@ -8,6 +8,7 @@ Users =
         email: "isa@tufayl.com"
         username: "isa"
         password: "password"
+        id: "n6a7DAMaa39tH8DYQ"
     "Admin":
         profile:
             name: "Admin"
@@ -41,6 +42,7 @@ Collections = [
         participantCount: 250
         recruitmentStatus: "active"
         dateCreated: now
+        owner: "n6a7DAMaa39tH8DYQ"
     }
     {
         name: "CLEAR"

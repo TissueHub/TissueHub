@@ -101,6 +101,10 @@ Collections = [
         Meteor.logout done
     getHelper: (template, helperName) ->
         template.__helpers.get(helperName)
+    callEventHandler: (template, eventName, e) ->
+        spyOn Blaze, "getData"
+            .and.returnValue {}
+        template.__eventMaps[0][eventName].call({templateInstance: -> }, e)
     spyOnHelper: (template, helperName, replacement) ->
         spy = jasmine.createSpy helperName
         if replacement then spy.and.callFake replacement

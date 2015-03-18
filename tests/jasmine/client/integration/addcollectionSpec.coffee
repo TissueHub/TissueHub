@@ -8,6 +8,21 @@ describe "Template addcollection", ->
         expect(window.getEmail).toHaveBeenCalled()
         expect(result).toEqual email
 
+    describe "handler \"submit form\"", ->
+
+        e = null
+
+        beforeEach ->
+            e = preventDefault: jasmine.createSpy("preventDefault"), target: document.createElement("div")
+            spyOn Meteor, "call"
+            Help.callEventHandler Template.addcollection, "submit form", e
+
+        it "prevents default event action", ->
+            expect(e.preventDefault).toHaveBeenCalled()
+
+        it "calls the \"collection\" method", ->
+            expect(Meteor.call).toHaveBeenCalledWith "collection", jasmine.any(Object), jasmine.any(Function)
+
     describe "renders", ->
 
         renderTemplate = ->

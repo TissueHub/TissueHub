@@ -1,3 +1,9 @@
+@Collections = new Meteor.Collection("collections")
+
+Collections.allow
+    update: canEdit
+    remove: canEdit
+
 Meteor.methods
     collection: (collectionAttributes) ->
         user = Meteor.user()

@@ -16,6 +16,7 @@ before_install:
   - "meteor reset"
   # - "meteor -p 3000 &"
   # give Meteor some time to download packages, init data, and to start
-  - "sleep 50"
+  # not necessary in my case
+  # - "sleep 50"
 
-script: meteor --test
+script: JASMINE_BROWSER=PhantomJS meteor --test

@@ -10,9 +10,9 @@ before_install:
   # install meteor
   - "curl https://install.meteor.com | /bin/sh"
   # Optionally we can update all our dependencies here
-  #- "meteor update"
+  # - "meteor update"
   - "meteor reset"
-  - "meteor -p 3000 &"
+  # - "meteor -p 3000 &"
   # give Meteor some time to download packages, init data, and to start
   - "sleep 50"
 

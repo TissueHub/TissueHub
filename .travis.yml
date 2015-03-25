@@ -1,0 +1,24 @@
+# this travis.yml file is for the entire velocity-examples repository
+# other frameworks should feel free to add items to the before_install script
+# and we may want to clone the ./run_nightwatch.sh script and add it back
+# into the root of the velocity-examples repository for meta-testing
+
+language: node_js
+
+node_js:
+  - "0.10"
+
+#services:
+#  - mongodb
+
+before_install:
+  # install meteor
+  - "curl https://install.meteor.com | /bin/sh"
+  # Optionally we can update all our dependencies here
+  #- "meteor update"
+  - "meteor reset"
+  - "meteor -p 3000 &"
+  # give Meteor some time to download packages, init data, and to start
+  - "sleep 50"
+
+script: meteor --test

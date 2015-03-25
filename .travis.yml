@@ -1,8 +1,3 @@
-# this travis.yml file is for the entire velocity-examples repository
-# other frameworks should feel free to add items to the before_install script
-# and we may want to clone the ./run_nightwatch.sh script and add it back
-# into the root of the velocity-examples repository for meta-testing
-
 language: node_js
 
 node_js:

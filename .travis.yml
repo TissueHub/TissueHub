@@ -19,4 +19,4 @@ before_install:
   # not necessary in my case
   # - "sleep 50"
 
-script: JASMINE_BROWSER=PhantomJS meteor --test
+script: JASMINE_CLIENT_INTEGRATION=0 JASMINE_BROWSER=PhantomJS meteor --test

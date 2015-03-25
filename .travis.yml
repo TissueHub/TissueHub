@@ -1,4 +1,5 @@
 language: node_js
+env: TISSUEHUB_VERSION=1.0.1
 node_js:
 - '0.10'
 before_install:
@@ -9,8 +10,10 @@ before_install:
 script: make build
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: HBVGFHP1clT8FEhcz4l5DcGEepqXLKRfOMVGPA0YJgMbk7iJpl8dKdyboThpWncIXXvWjQP1iuHKufKv8UdiMphIfS/37a091WJrwBas7ft7uVnXU0i+N725jswviP2yCGXL5Rh8QPlQ1z2lMKzWiwE9dyivDYJE8BT7A3YUKTA=
-  file: temp
+  file: .build/tissuehub.tar.gz
   on:
     repo: TissueHub/TissueHub
+    tags: true

@@ -1,21 +1,16 @@
 language: node_js
-
 node_js:
-  - "0.10"
-
-#services:
-#  - mongodb
-
+- '0.10'
 before_install:
-  # install phantom
-  - "npm install -g phantomjs"
-  # install meteor
-  - "curl https://install.meteor.com | /bin/sh"
-  # Optionally we can update all our dependencies here
-  # - "meteor update"
-  - "meteor reset"
-  # - "meteor -p 3000 &"
-  # give Meteor some time to download packages, init data, and to start
-  - "sleep 50"
-
-script: JASMINE_CLIENT_INTEGRATION=0 JASMINE_BROWSER=PhantomJS meteor --test
+- npm install -g phantomjs
+- curl https://install.meteor.com | /bin/sh
+- meteor reset
+- sleep 50
+script: make build
+deploy:
+  provider: releases
+  api_key:
+    secure: HBVGFHP1clT8FEhcz4l5DcGEepqXLKRfOMVGPA0YJgMbk7iJpl8dKdyboThpWncIXXvWjQP1iuHKufKv8UdiMphIfS/37a091WJrwBas7ft7uVnXU0i+N725jswviP2yCGXL5Rh8QPlQ1z2lMKzWiwE9dyivDYJE8BT7A3YUKTA=
+  file: temp
+  on:
+    repo: TissueHub/TissueHub

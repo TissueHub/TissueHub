@@ -1,11 +1,5 @@
 describe "Template listcollections", ->
 
-    # beforeEach ->
-    #     Help.installStubs()
-
-    # afterEach ->
-    #     Help.uninstallStubs()
-
     it "helper \"collections\" queries Collections.find", ->
         console.log Object.keys Collections
         spyOn Collections, "find"

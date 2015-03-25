@@ -15,3 +15,16 @@ git clone https://github.com/TissueHub/TissueHub.git
 cd TissueHub
 meteor
 ```
+
+## Deployment
+
+Build (produces a `builds/build-<timestamp>`)
+
+```shell
+$ make build
+```
+
+Starting the App (test)
+
+PORT=3001 MONGO_URL=mongodb://localhost/TissueHub MONGO_OPLOG_URL=mongodb://localhost/local ROOT_URL="https://tissuehub.org/"
+

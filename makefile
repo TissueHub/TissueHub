@@ -1,4 +1,8 @@
-.PHONY: build build/tissuehub-$(TISSUEHUB_VERSION) upload test
+architectures := os.osx.x86_64 os.linux.x86_64 os.linux.x86_32
+
+archives := $(addprefix .build/tissuehub-$(TISSUEHUB_VERSION), $(addsuffix .tar.gz, $(architectures)))
+
+.PHONY: build upload test clean
 
 clean:
 	rm -rf .build/*
@@ -6,12 +10,12 @@ clean:
 test:
 	JASMINE_CLIENT_INTEGRATION=0 JASMINE_BROWSER=PhantomJS meteor --test
 
-.build/tissuehub-$(TISSUEHUB_VERSION): clean test
-	meteor build --directory .build/tissuehub-$(TISSUEHUB_VERSION) --architecture os.linux.x86_64
-
-build: .build/tissuehub-$(TISSUEHUB_VERSION)
-	tar -czf .build/tissuehub-$(TISSUEHUB_VERSION).tar.gz .build/tissuehub-$(TISSUEHUB_VERSION)/*
-	cp .build/tissuehub-$(TISSUEHUB_VERSION).tar.gz .build/tissuehub.tar.gz
-
 upload: build
 	scp .build/tissuehub-$(TISSUEHUB_VERSION).tar.gz tissuehub.org:tissuehub-builds/tissuehub-$(TISSUEHUB_VERSION).tar.gz
+
+build: clean test $(architectures)
+
+os.%:
+	@echo "\n\nMaking TissueHub $(TISSUEHUB_VERSION) for $@"
+	meteor build --directory .build/tissuehub-$(TISSUEHUB_VERSION)-$@ --architecture $@
+	tar -czf .build/tissuehub-$(TISSUEHUB_VERSION)-$@.tar.gz .build/tissuehub-$(TISSUEHUB_VERSION)-$@/*

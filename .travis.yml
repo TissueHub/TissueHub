@@ -7,6 +7,8 @@ node_js:
 #  - mongodb
 
 before_install:
+  # install phantom
+  - "npm install -g phantomjs"
   # install meteor
   - "curl https://install.meteor.com | /bin/sh"
   # Optionally we can update all our dependencies here

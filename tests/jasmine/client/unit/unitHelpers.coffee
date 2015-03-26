@@ -22,7 +22,7 @@ day = 24 * hour
 week = 7 * day
 base = now - 10 * hour # base creation time for fixture elements
 
-Collections = [
+TestCollections = [
     {
         name: "RADAR"
         description: "Rheumatoid Arthritis Database and Repository"
@@ -112,4 +112,4 @@ Collections = [
         return spy
     data:
         users: Users
-        collections: Collections
+        collections: TestCollections

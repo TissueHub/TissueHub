@@ -18,4 +18,4 @@ build: clean test $(architectures)
 os.%:
 	@echo "\n\nMaking TissueHub $(TISSUEHUB_VERSION) for $@"
 	meteor build --directory .build/tissuehub-$(TISSUEHUB_VERSION)-$@ --architecture $@
-	tar -czf .build/tissuehub-$(TISSUEHUB_VERSION)-$@.tar.gz .build/tissuehub-$(TISSUEHUB_VERSION)-$@/*
+	cd .build/tissuehub-$(TISSUEHUB_VERSION)-$@ && tar -czf ../tissuehub-$(TISSUEHUB_VERSION)-$@.tar.gz .

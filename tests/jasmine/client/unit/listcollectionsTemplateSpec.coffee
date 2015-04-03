@@ -1,7 +1,6 @@
 describe "Template listcollections", ->
 
     it "helper \"collections\" queries Collections.find", ->
-        console.log Object.keys Collections
         spyOn Collections, "find"
             .and.returnValue Help.data.collections
         result = Help.getHelper(Template.listcollections, "collections")()

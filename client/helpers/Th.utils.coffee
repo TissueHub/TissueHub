@@ -12,3 +12,9 @@ Th.makeFiltersFromTerms = (terms) ->
         ]
     filters = $and: (makefilter term for term in terms.split "," when term)
     filters
+
+Th.fillForm = (form, data) ->
+    fillField = (key) ->
+        $("[name=\"#{key}\"]", form).val data[key]
+    fillField key for key in Object.keys data
+    return form

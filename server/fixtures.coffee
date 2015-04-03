@@ -212,4 +212,4 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
         name: "Example Organization"
         description: "An Example Biospecimen Collection Organization"
         url: "https://example.com"
-    exampleId = Organization.insert example
+    exampleId = Organizations.insert example

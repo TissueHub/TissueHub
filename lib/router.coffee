@@ -57,6 +57,13 @@ Router.map ->
         path: "/profile/edit"
         template: "editprofile"
         data: -> Meteor.user()
+    @route "listOrganizations",
+        path: "/organizations"
+        template: "listorganizations"
+        waitOn: -> Meteor.subscribe "organizations"
+    @route "addOrganization",
+        path: "/organizations/new"
+        template: "addorganization"
 
 Router.onAfterAction ->
     ga? "send", "pageview"

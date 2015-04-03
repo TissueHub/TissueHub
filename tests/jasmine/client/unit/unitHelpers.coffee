@@ -90,6 +90,25 @@ TestCollections = [
     }
 ]
 
+TestOrganizations = [
+    tufayl =
+        owners: ["1234"]
+        members: ["5678"]
+        name: "Tufayl Biospecimens"
+        description: "The Tufayl Biospecimen Collection Service"
+        url: "https://specimens.tufayl.com/"
+        dateCreated: now - 10 * week
+    tufaylId = Organizations.insert tufayl
+    {
+        owners: ["1234", "1357"]
+        members: ["5678", "9012"]
+        name: "Example Organization"
+        description: "An Example Biospecimen Collection Organization"
+        url: "https://example.com"
+        dateCreated: now - 10 * week
+    }
+]
+
 @Help =
     loginUser: (user, done) ->
         Meteor.loginWithPassword user.email, user.password, done
@@ -110,6 +129,11 @@ TestCollections = [
         if replacement then spy.and.callFake replacement
         template.__helpers.set(helperName, spy)
         return spy
+    renderTemplate: (template) ->
+        div = document.createElement "div"
+        Blaze.render template, div
+        return div
     data:
         users: Users
         collections: TestCollections
+        organizations: TestOrganizations

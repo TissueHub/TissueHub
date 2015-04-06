@@ -8,5 +8,5 @@ Template.addorganization.events
         Meteor.call "createOrganization", organization, (error) ->
             if error then Alert.add error.message, "danger"
             else
-                Alert.add "Successfully added collection.", "success"
+                Alert.add "Successfully added organization.", "success"
                 Router.go "listOrganizations"

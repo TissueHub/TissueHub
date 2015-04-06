@@ -21,7 +21,7 @@
 
 <template name="organizationRow">
     <tr>
-        <td>{{name}}</td>
+        <td><a href="{{pathFor 'viewOrganization'}}">{{name}}</a></td>
         <td>{{description}}</td>
         <td>{{url}}</td>
     </tr>

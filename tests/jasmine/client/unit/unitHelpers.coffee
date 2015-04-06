@@ -129,9 +129,9 @@ TestOrganizations = [
         if replacement then spy.and.callFake replacement
         template.__helpers.set(helperName, spy)
         return spy
-    renderTemplate: (template) ->
+    renderTemplate: (template, data) ->
         div = document.createElement "div"
-        Blaze.render template, div
+        if data then Blaze.renderWithData template, data, div else Blaze.render template, div
         return div
     data:
         users: Users

@@ -48,3 +48,13 @@ describe "Permission helper", ->
                 .and.returnValue true
             result = canEdit()
             expect(result).toBe true
+
+    describe "ownsOrganization(userId, organization)", ->
+
+        it "returns true if userId is in organization.owners", ->
+            result = ownsOrganization "1234", owners: ["2345", "23562", "1234", "1642"]
+            expect(result).toEqual true
+
+        it "returns false if userId is not in organization.owners", ->
+            result = ownsOrganization "1234", owners: ["2345", "23562", "123334", "1642"]
+            expect(result).toEqual false

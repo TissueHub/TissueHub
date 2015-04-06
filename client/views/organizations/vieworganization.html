@@ -1,4 +1,7 @@
 <template name="vieworganization">
+    {{#if ownsOrganization}}<span class="pull-right">
+        <a class="btn btn-default edit" href="{{pathFor 'editOrganization'}}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
+    </span>{{/if}}
     <h2>{{name}} <small><a href="{{url}}">{{url}}</a></small></h2>
     <p><a href="{{pathFor 'listOrganizations'}}">Back to Organization List</a></p>
     <p class="lead">{{description}}</p>

@@ -57,3 +57,14 @@ describe "Template vieworganization helper \"allMembers\"", ->
         organization = name: "Hello", owners: ["1234"]
         allMembers = Help.getHelper(Template.vieworganization, "allMembers").bind organization
         expect(allMembers).not.toThrow()
+
+describe "Template vieworganization helper \"ownsOrganization\"", ->
+
+    it "wraps the current organization and user", ->
+        spyOn Meteor, "userId"
+        spyOn window, "ownsOrganization"
+            .and.returnValue value = {}
+        result = Help.getHelper(Template.vieworganization, "ownsOrganization")()
+        expect(result).toEqual value
+        expect(Meteor.userId).toHaveBeenCalled()
+        expect(ownsOrganization).toHaveBeenCalled()

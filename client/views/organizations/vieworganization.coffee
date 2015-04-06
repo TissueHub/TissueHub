@@ -8,3 +8,4 @@ Template.vieworganization.helpers
             member.username = memberInfo.username
             member.profile = _.pick memberInfo.profile, "name"
         allMembers
+    ownsOrganization: -> ownsOrganization Meteor.userId(), @

@@ -53,6 +53,12 @@ Router.map ->
         path: "/profile"
         template: "viewprofile"
         data: -> Meteor.user()
+    @route "viewUserProfile",
+        path: "/profile/:_id"
+        template: "viewprofile"
+        waitOn: ->
+            Meteor.subscribe "publicUsers", @params._id
+        data: -> Meteor.users.findOne @params._id
     @route "editProfile",
         path: "/profile/edit"
         template: "editprofile"
@@ -69,6 +75,7 @@ Router.map ->
         template: "vieworganization"
         waitOn: ->
             Meteor.subscribe "organizations", _id: @params._id
+            Meteor.subscribe "usersForOrganization", @params._id
         data: -> Organizations.findOne @params._id
 
 Router.onAfterAction ->

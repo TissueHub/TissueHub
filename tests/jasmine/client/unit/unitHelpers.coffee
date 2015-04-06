@@ -91,14 +91,14 @@ TestCollections = [
 ]
 
 TestOrganizations = [
-    tufayl =
+    {
         owners: ["1234"]
         members: ["5678"]
         name: "Tufayl Biospecimens"
         description: "The Tufayl Biospecimen Collection Service"
         url: "https://specimens.tufayl.com/"
         dateCreated: now - 10 * week
-    tufaylId = Organizations.insert tufayl
+    }
     {
         owners: ["1234", "1357"]
         members: ["5678", "9012"]

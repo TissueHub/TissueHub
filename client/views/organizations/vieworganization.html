@@ -2,4 +2,19 @@
     <h2>{{name}} <small><a href="{{url}}">{{url}}</a></small></h2>
     <p><a href="{{pathFor 'listOrganizations'}}">Back to Organization List</a></p>
     <p class="lead">{{description}}</p>
+    <h3>Members</h3>
+    <ul class="members">
+        {{#each allMembers}}
+            {{> organizationMember}}
+        {{/each}}
+    </ul>
+</template>
+
+<template name="organizationMember">
+    <li>
+        <a href="{{pathFor 'viewUserProfile'}}">{{username}}</a>
+        {{#if owner}}
+            <span class="label label-info">Owner</span>
+        {{/if}}
+    </li>
 </template>

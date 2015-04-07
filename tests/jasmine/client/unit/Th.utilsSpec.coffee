@@ -52,3 +52,32 @@ describe "Client utility helper Th", ->
             organization = name: "Hello", owners: ["1234"]
             allMembers = -> Th.getOrganizationMembers organization
             expect(allMembers).not.toThrow()
+
+    describe "subscribeAndQueryUsers(term)", ->
+
+        term = "adm"
+        expectedQuery = $or: [
+            { "profile.name": $regex: term, $options: "i" }
+            { "profile.email": $regex: term, $options: "i" }
+        ]
+        result = expectedResult = null
+
+        beforeEach ->
+            users = [ Help.data.users["Admin"], Help.data.users["Isa Tufayl"] ]
+            expectedResult = results: users.map (user) ->
+                user.id = user._id
+                user.text = user.profile.name
+                user
+            spyOn Meteor, "subscribe"
+            spyOn Meteor.users, "find"
+                .and.returnValue users
+            result = Th.subscribeAndQueryUsers term
+
+        it "subscribes to \"users\" with the query", ->
+            expect(Meteor.subscribe).toHaveBeenCalledWith "users", expectedQuery
+
+        it "finds users matching the query", ->
+            expect(Meteor.users.find).toHaveBeenCalledWith expectedQuery
+
+        it "maps the result of the query into a format appropriate for select2", ->
+            expect(result).toEqual expectedResult

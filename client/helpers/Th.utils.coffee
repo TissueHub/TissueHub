@@ -28,3 +28,17 @@ Th.getOrganizationMembers = (organization) ->
             member.username = memberInfo.username
             member.profile = _.pick memberInfo.profile, "name"
     return allMembers
+
+Th.subscribeAndQueryUsers = (term) ->
+    query = $or: [
+        { "profile.name": $regex: term, $options: "i" }
+        { "profile.email": $regex: term, $options: "i" }
+    ]
+    Meteor.subscribe "users", query
+    users = Meteor.users.find query
+    return {
+        results: users.map (user) ->
+            user.id = user._id
+            user.text = user.profile.name or getEmail(user)
+            user
+    }

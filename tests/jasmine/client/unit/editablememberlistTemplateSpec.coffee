@@ -43,3 +43,13 @@ describe "Template editablememberlist helper \"allMembers\"", ->
 
     it "wraps Th.getOrganizationMembers", ->
         expect(Th.getOrganizationMembers).toHaveBeenCalledWith organization
+
+# describe "Template editablememberlist handler \"input\""
+describe "Template editablememberlist handler \"rendered\"", ->
+
+    beforeEach ->
+        spyOn $.fn, "select2"
+        Template.editablememberlist.rendered()
+
+    it "sets up the input.addusername select2 box", ->
+        expect($.fn.select2).toHaveBeenCalled()

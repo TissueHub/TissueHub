@@ -2,6 +2,7 @@ Users =
     "New User 1":
         email: "newuser1@example.com"
         password: "password"
+        id: "1234"
     "Isa Tufayl":
         profile:
             name: "Isa Tufayl"
@@ -15,6 +16,7 @@ Users =
         email: "admin@example.com"
         username: "admin"
         password: "password"
+        id: "n6a7DAMaa39tH8DY2"
 
 now = new Date().getTime()
 hour = 1000 * 60 * 60 # ms * sec * min

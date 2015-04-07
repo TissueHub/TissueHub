@@ -28,6 +28,9 @@ describe "Template editablememberlist renders", ->
     it "checks the \"owner\" checkbox for each owner", ->
         expect($(div).find("div.member input:checkbox:checked.owner").length).toEqual organization.owners.length
 
+    it "an input for adding members", ->
+        expect($(div).find("input[name=addusername]").length).toEqual 1
+
 describe "Template editablememberlist helper \"allMembers\"", ->
 
     organization = result = user = null

@@ -18,5 +18,6 @@ describe "Template editorganization renders", ->
     it "an input for the organization's url", ->
         expect($(div).find("input[name=\"url\"]").val()).toEqual organization.url
 
-    it "an editable list of the organization members", ->
+    it "an editable list of the organization members (editablememberlist template)", ->
+        #ensure we rendered the editablememberlist template
         expect($(div).find("div.editable-member-list").length).toEqual 1

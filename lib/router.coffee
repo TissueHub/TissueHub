@@ -77,6 +77,13 @@ Router.map ->
             Meteor.subscribe "organizations", _id: @params._id
             Meteor.subscribe "usersForOrganization", @params._id
         data: -> Organizations.findOne @params._id
+    @route "editOrganization",
+        path: "/organizations/:_id/edit"
+        template: "editorganization"
+        waitOn: ->
+            Meteor.subscribe "organizations", _id: @params._id
+            Meteor.subscribe "usersForOrganization", @params._id
+        data: -> Organizations.findOne @params._id
 
 Router.onAfterAction ->
     ga? "send", "pageview"

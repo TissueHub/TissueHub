@@ -12,14 +12,12 @@
             <label for="url">Website</label>
             <input class="form-control" type="text" name="url" placeholder="Organization Website" value="{{url}}">
         </div>
-        <button class="btn btn-primary" type="submit">Save Organization</button>
-        <a class="btn btn-default" href="{{pathFor 'listOrganizations'}}">Cancel</a>
+        <button class="btn btn-primary btn-sm" type="submit">Save Organization</button>
+        <a class="btn btn-default btn-sm" href="{{pathFor 'listOrganizations'}}">Cancel</a>
+
         {{> editablememberlist}}
+
         <button class="btn btn-primary" type="submit">Save Organization</button>
         <a class="btn btn-default" href="{{pathFor 'listOrganizations'}}">Cancel</a>
     </form>
-</template>
-
-<template name="editablememberlist">
-    <div class="editable-member-list"></div>
 </template>

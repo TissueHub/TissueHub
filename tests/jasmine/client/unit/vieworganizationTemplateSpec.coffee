@@ -33,30 +33,13 @@ describe "Template vieworganization helper \"allMembers\"", ->
     organization = result = user = null
 
     beforeEach ->
-        user = Help.data.users["Isa Tufayl"]
-        spyOn Meteor.users, "findOne"
-            .and.returnValue user
+        spyOn Th, "getOrganizationMembers"
         organization = Help.data.organizations[1]
         allMembers = Help.getHelper(Template.vieworganization, "allMembers").bind organization
         result = allMembers()
 
-    it "includes all organization owners and members", ->
-        expect(result.length).toEqual organization.owners.length + organization.members.length
-
-    it "includes the owner:true property on owners", ->
-        owners = result.filter (member) -> member.owner
-        expect(owners.length).toEqual organization.owners.length
-
-    it "looks up each user", ->
-        expect(Meteor.users.findOne).toHaveBeenCalled()
-
-    it "annotates each user with their username", ->
-        expect(result[0].username).toEqual user.username
-
-    it "does not throw if there are no members", ->
-        organization = name: "Hello", owners: ["1234"]
-        allMembers = Help.getHelper(Template.vieworganization, "allMembers").bind organization
-        expect(allMembers).not.toThrow()
+    it "wraps Th.getOrganizationMembers", ->
+        expect(Th.getOrganizationMembers).toHaveBeenCalledWith organization
 
 describe "Template vieworganization helper \"ownsOrganization\"", ->
 

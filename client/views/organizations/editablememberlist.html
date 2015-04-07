@@ -1,0 +1,19 @@
+<template name="editablememberlist">
+    <div class="editable-member-list">
+        <h3>Members</h3>
+        <input type="hidden" name="count" value="{{allMembers.length}}" />
+        {{#each allMembers}}
+            <div class="row member">
+                <div class="col-sm-3">
+                    <p>{{profile.name}} ({{username}})</p>
+                </div>
+                <div class="col-sm-1">
+                    <label class="checkbox-inline"><input type="checkbox" class="owner" checked="{{owner}}"> Owner</label>
+                </div>
+                <div class="col-sm-1">
+                    <button class="btn btn-xs btn-danger remove"><span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>

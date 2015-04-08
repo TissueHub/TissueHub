@@ -44,7 +44,6 @@ describe "Template editablememberlist helper \"allMembers\"", ->
     it "wraps Th.getOrganizationMembers", ->
         expect(Th.getOrganizationMembers).toHaveBeenCalledWith organization
 
-# describe "Template editablememberlist handler \"input\""
 describe "Template editablememberlist handler \"rendered\"", ->
 
     beforeEach ->
@@ -53,3 +52,24 @@ describe "Template editablememberlist handler \"rendered\"", ->
 
     it "sets up the input.addusername select2 box", ->
         expect($.fn.select2).toHaveBeenCalled()
+
+describe "Template editablememberlist handler \"change [name=addusername]\"", ->
+
+    e = div = form = organization = user = null
+
+    beforeEach ->
+        organization = Help.data.organizations[0]
+        user = Help.data.users["Isa Tufayl"]
+        spyOn Organizations, "update"
+        spyOn Template, "parentData"
+            .and.returnValue organization
+        div = Help.renderTemplate(Template.editorganization)
+        input = $("[name=addusername]", div).val(user._id)[0]
+        e = preventDefault: jasmine.createSpy("preventDefault"), target: form
+        Help.callEventHandler Template.editablememberlist, "change [name=addusername]", e
+
+    it "prevents default event action", ->
+        expect(e.preventDefault).toHaveBeenCalled()
+
+    it "adds the user by id to the organization", ->
+        expect(Organizations.update).toHaveBeenCalledWith organization._id, $push: { members: user._id}

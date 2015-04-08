@@ -7,3 +7,9 @@ Template.editablememberlist.rendered = ->
             minimumInputLength: 2
             query: (query) ->
                 query.callback Th.subscribeAndQueryUsers query.term
+
+Template.editablememberlist.events
+    "change [name=addusername]": (e) ->
+        e.preventDefault()
+        organizationId = Template.parentData(2)._id
+        Organizations.update organizationId, $push: members: $(e.target).val()

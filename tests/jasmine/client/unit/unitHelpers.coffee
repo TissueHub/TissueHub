@@ -94,6 +94,7 @@ TestCollections = [
 
 TestOrganizations = [
     {
+        _id: "organization1"
         owners: ["1234"]
         members: ["5678"]
         name: "Tufayl Biospecimens"

@@ -99,3 +99,37 @@ describe "Template editablemember handler \"click button.remove\"", ->
 
     it "removes the user by id from the organization", ->
         expect(Organizations.update).toHaveBeenCalledWith organization._id, $pull: { members: user.id }
+
+describe "Template editablemember handler \"click input.owner\"", ->
+
+    e = div = form = organization = user = null
+
+    beforeEach ->
+        organization = Help.data.organizations[0]
+        user = Help.data.users["Isa Tufayl"]
+        console.log Help.data.users
+        spyOn Organizations, "update"
+        spyOn Template, "parentData"
+            .and.returnValue organization
+        e = preventDefault: jasmine.createSpy("preventDefault"), target: checked: true
+        Help.callEventHandler Template.editablemember, "click input.owner", e, user
+
+    it "prevents default event action", ->
+        expect(e.preventDefault).toHaveBeenCalled()
+
+    it "gets the organization id from Template.parentData(1)", ->
+        expect(Template.parentData).toHaveBeenCalledWith 1
+
+    it "moves the user from members to owners if checked", ->
+        expect(Organizations.update).toHaveBeenCalledWith organization._id, {
+            $pull: { members: user.id }
+            $push: { owners: user.id }
+        }
+
+    it "moves the user from owners to members if unchecked", ->
+        e.target.checked = false
+        Help.callEventHandler Template.editablemember, "click input.owner", e, user
+        expect(Organizations.update).toHaveBeenCalledWith organization._id, {
+            $push: { members: user.id }
+            $pull: { owners: user.id }
+        }

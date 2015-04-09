@@ -127,8 +127,11 @@ TestOrganizations = [
     getHelper: (template, helperName) ->
         template.__helpers.get(helperName)
     callEventHandler: (template, eventName, e, data) ->
-        spyOn Blaze, "getData"
-            .and.returnValue data || {}
+        if Blaze.getData.calls
+            Blaze.getData.and.returnValue data || {}
+        else
+            spyOn Blaze, "getData"
+                .and.returnValue data || {}
         template.__eventMaps[0][eventName].call({templateInstance: -> }, e)
     spyOnHelper: (template, helperName, replacement) ->
         spy = jasmine.createSpy helperName

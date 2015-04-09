@@ -19,3 +19,13 @@ Template.editablemember.events
         e.preventDefault()
         organizationId = Template.parentData(1)._id
         Organizations.update organizationId, $pull: members: @_id
+    "click input.owner": (e) ->
+        e.preventDefault()
+        if e.target.checked # Adding an owner
+            push = owners: @_id
+            pull = members: @_id
+        else
+            push = members: @_id
+            pull = owners: @_id
+        organizationId = Template.parentData(1)._id
+        Organizations.update organizationId, { $pull: pull, $push: push }

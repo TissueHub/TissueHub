@@ -1,5 +1,8 @@
 @Organizations = new Meteor.Collection("organizations")
 
+Organizations.allow
+    update: ownsOrganization
+
 Meteor.methods
     createOrganization: (organizationAttributes) ->
         user = Meteor.user()

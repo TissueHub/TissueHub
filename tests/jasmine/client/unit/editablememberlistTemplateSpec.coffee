@@ -71,5 +71,8 @@ describe "Template editablememberlist handler \"change [name=addusername]\"", ->
     it "prevents default event action", ->
         expect(e.preventDefault).toHaveBeenCalled()
 
+    it "gets the organization id from Template.parentData(1)", ->
+        expect(Template.parentData).toHaveBeenCalledWith 1
+
     it "adds the user by id to the organization", ->
         expect(Organizations.update).toHaveBeenCalledWith organization._id, $push: { members: user._id}

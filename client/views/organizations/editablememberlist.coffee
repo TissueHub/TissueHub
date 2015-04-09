@@ -11,5 +11,5 @@ Template.editablememberlist.rendered = ->
 Template.editablememberlist.events
     "change [name=addusername]": (e) ->
         e.preventDefault()
-        organizationId = Template.parentData(2)._id
+        organizationId = Template.parentData(1)._id
         Organizations.update organizationId, $push: members: $(e.target).val()

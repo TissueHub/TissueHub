@@ -84,7 +84,6 @@ describe "Template editablemember handler \"click button.remove\"", ->
     beforeEach ->
         organization = Help.data.organizations[0]
         user = Help.data.users["Isa Tufayl"]
-        console.log Help.data.users
         spyOn Organizations, "update"
         spyOn Template, "parentData"
             .and.returnValue organization
@@ -107,7 +106,6 @@ describe "Template editablemember handler \"click input.owner\"", ->
     beforeEach ->
         organization = Help.data.organizations[0]
         user = Help.data.users["Isa Tufayl"]
-        console.log Help.data.users
         spyOn Organizations, "update"
         spyOn Template, "parentData"
             .and.returnValue organization
@@ -127,9 +125,18 @@ describe "Template editablemember handler \"click input.owner\"", ->
         }
 
     it "moves the user from owners to members if unchecked", ->
+        Organizations.update.calls.reset()
         e.target.checked = false
         Help.callEventHandler Template.editablemember, "click input.owner", e, user
         expect(Organizations.update).toHaveBeenCalledWith organization._id, {
             $push: { members: user.id }
             $pull: { owners: user.id }
         }
+
+    it "does not allow an owner to un-owner themself", ->
+        Organizations.update.calls.reset()
+        e.target.checked = false
+        spyOn Meteor, "userId"
+            .and.returnValue user._id
+        Help.callEventHandler Template.editablemember, "click input.owner", e, user
+        expect(Organizations.update).not.toHaveBeenCalled()

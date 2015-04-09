@@ -21,6 +21,7 @@ Template.editablemember.events
         Organizations.update organizationId, $pull: members: @_id
     "click input.owner": (e) ->
         e.preventDefault()
+        if @_id is Meteor.userId() then return
         if e.target.checked # Adding an owner
             push = owners: @_id
             pull = members: @_id

@@ -21,3 +21,23 @@ describe "Template editorganization renders", ->
     it "an editable list of the organization members (editablememberlist template)", ->
         #ensure we rendered the editablememberlist template
         expect($(div).find("div.editable-member-list").length).toEqual 1
+
+describe "Template editorganization handler \"submit form\"", ->
+
+    e = div = form = organization = editedOrganization = null
+
+    beforeEach ->
+        spyOn Organizations, "update"
+        organization = Help.data.organizations[0]
+        div = Help.renderTemplate(Template.editorganization, organization)
+        editedOrganization = _.clone organization
+        editedOrganization.description += " and Waffles"
+        form = Th.fillForm $("form", div), editedOrganization
+        e = preventDefault: jasmine.createSpy("preventDefault"), target: form
+        Help.callEventHandler Template.editorganization, "submit form", e, organization
+
+    it "prevents default event action", ->
+        expect(e.preventDefault).toHaveBeenCalled()
+
+    it "updates the organization as appropriate", ->
+        expect(Organizations.update).toHaveBeenCalledWith organization._id, {$set: _.pick(editedOrganization, "name", "description", "url")}, jasmine.any(Function)

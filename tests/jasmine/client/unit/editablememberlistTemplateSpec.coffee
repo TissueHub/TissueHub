@@ -65,7 +65,7 @@ describe "Template editablememberlist handler \"change [name=addusername]\"", ->
             .and.returnValue organization
         div = Help.renderTemplate(Template.editorganization)
         input = $("[name=addusername]", div).val(user._id)[0]
-        e = preventDefault: jasmine.createSpy("preventDefault"), target: form
+        e = preventDefault: jasmine.createSpy("preventDefault"), target: input
         Help.callEventHandler Template.editablememberlist, "change [name=addusername]", e
 
     it "prevents default event action", ->
@@ -76,3 +76,26 @@ describe "Template editablememberlist handler \"change [name=addusername]\"", ->
 
     it "adds the user by id to the organization", ->
         expect(Organizations.update).toHaveBeenCalledWith organization._id, $push: { members: user._id}
+
+describe "Template editablemember handler \"click button.remove\"", ->
+
+    e = div = form = organization = user = null
+
+    beforeEach ->
+        organization = Help.data.organizations[0]
+        user = Help.data.users["Isa Tufayl"]
+        console.log Help.data.users
+        spyOn Organizations, "update"
+        spyOn Template, "parentData"
+            .and.returnValue organization
+        e = preventDefault: jasmine.createSpy("preventDefault")
+        Help.callEventHandler Template.editablemember, "click button.remove", e, user
+
+    it "prevents default event action", ->
+        expect(e.preventDefault).toHaveBeenCalled()
+
+    it "gets the organization id from Template.parentData(1)", ->
+        expect(Template.parentData).toHaveBeenCalledWith 1
+
+    it "removes the user by id from the organization", ->
+        expect(Organizations.update).toHaveBeenCalledWith organization._id, $pull: { members: user.id }

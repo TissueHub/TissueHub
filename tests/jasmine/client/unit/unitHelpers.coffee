@@ -2,21 +2,24 @@ Users =
     "New User 1":
         email: "newuser1@example.com"
         password: "password"
-        id: "1234"
+        _id: "1234"
+        #id: "1234"
     "Isa Tufayl":
         profile:
             name: "Isa Tufayl"
         email: "isa@tufayl.com"
         username: "isa"
         password: "password"
-        id: "n6a7DAMaa39tH8DYQ"
+        #id: "n6a7DAMaa39tH8DYQ"
+        _id: "n6a7DAMaa39tH8DYQ"
     "Admin":
         profile:
             name: "Admin"
         email: "admin@example.com"
         username: "admin"
         password: "password"
-        id: "n6a7DAMaa39tH8DY2"
+        #id: "n6a7DAMaa39tH8DY2"
+        _id: "n6a7DAMaa39tH8DY2"
 
 now = new Date().getTime()
 hour = 1000 * 60 * 60 # ms * sec * min
@@ -123,9 +126,9 @@ TestOrganizations = [
         Meteor.logout done
     getHelper: (template, helperName) ->
         template.__helpers.get(helperName)
-    callEventHandler: (template, eventName, e) ->
+    callEventHandler: (template, eventName, e, data) ->
         spyOn Blaze, "getData"
-            .and.returnValue {}
+            .and.returnValue data || {}
         template.__eventMaps[0][eventName].call({templateInstance: -> }, e)
     spyOnHelper: (template, helperName, replacement) ->
         spy = jasmine.createSpy helperName

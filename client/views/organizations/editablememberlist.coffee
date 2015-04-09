@@ -13,3 +13,9 @@ Template.editablememberlist.events
         e.preventDefault()
         organizationId = Template.parentData(1)._id
         Organizations.update organizationId, $push: members: $(e.target).val()
+
+Template.editablemember.events
+    "click button.remove": (e) ->
+        e.preventDefault()
+        organizationId = Template.parentData(1)._id
+        Organizations.update organizationId, $pull: members: @_id

@@ -49,6 +49,16 @@ describe "Permission helper", ->
             result = canEdit()
             expect(result).toBe true
 
+        it "returns true if belongsToManagingOrganization(userId, doc)", ->
+            spyOn global, "belongsToManagingOrganization"
+                .and.returnValue true
+            result = canEdit()
+            expect(result).toBe true
+
+        it "returns false otherwise", ->
+            result = canEdit()
+            expect(result).toBe false
+
     describe "ownsOrganization(userId, organization)", ->
 
         it "returns true if userId is in organization.owners", ->
@@ -58,3 +68,23 @@ describe "Permission helper", ->
         it "returns false if userId is not in organization.owners", ->
             result = ownsOrganization "1234", owners: ["2345", "23562", "123334", "1642"]
             expect(result).toEqual false
+
+    describe "belongsToManagingOrganization", ->
+
+        testParameters = (userId, collection, organization, expectedResult) ->
+            spyOn Organizations, "findOne"
+                .and.returnValue organization
+            expect(belongsToManagingOrganization userId, collection).toEqual expectedResult
+            expect(Organizations.findOne).toHaveBeenCalledWith "_id": collection.managingOrganization
+
+        it "returns true if userId is a member of the managing organization", ->
+            userId       = "abcdef"
+            collection   = managingOrganization: "1234"
+            organization = members: [userId]
+            testParameters userId, collection, organization, true
+
+        it "returns true if userId is an owner of the managing organization", ->
+            userId       = "abcdef"
+            collection   = managingOrganization: "1234"
+            organization = owners: [userId]
+            testParameters userId, collection, organization, true

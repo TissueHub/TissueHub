@@ -48,6 +48,8 @@ TestCollections = [
         recruitmentStatus: "active"
         dateCreated: now
         owner: "n6a7DAMaa39tH8DYQ"
+        notes: "A notable note."
+        managingOrganization: "1234"
     }
     {
         name: "CLEAR"

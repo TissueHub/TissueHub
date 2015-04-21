@@ -42,3 +42,16 @@ Th.subscribeAndQueryUsers = (term) ->
             user.text = user.profile.name or getEmail(user)
             user
     }
+
+Th.subscribeAndQueryOrganizations = (term) ->
+    query =
+        filter: name: $regex: term, $options: "i"
+        limit: 5
+    Meteor.subscribe "organizations", query
+    organizations = Organizations.find query.filter
+    return {
+        results: organizations.map (organization) ->
+            organization.id = organization._id
+            organization.text = organization.name
+            organization
+    }

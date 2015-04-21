@@ -81,3 +81,31 @@ describe "Client utility helper Th", ->
 
         it "maps the result of the query into a format appropriate for select2", ->
             expect(result).toEqual expectedResult
+
+    describe "subscribeAndQueryOrganizations(term)", ->
+
+        term = "adm"
+        expectedQuery =
+            filter: name: $regex: term, $options: "i"
+            limit: 5
+        result = expectedResult = null
+
+        beforeEach ->
+            organizations = Help.data.organizations.slice(0,2)
+            expectedResult = results: organizations.map (organization) ->
+                organization.id = organization._id
+                organization.text = organization.name
+                organization
+            spyOn Meteor, "subscribe"
+            spyOn Organizations, "find"
+                .and.returnValue organizations
+            result = Th.subscribeAndQueryOrganizations term
+
+        it "subscribes to \"organizations\" with the query", ->
+            expect(Meteor.subscribe).toHaveBeenCalledWith "organizations", expectedQuery
+
+        it "finds organizations matching the query", ->
+            expect(Organizations.find).toHaveBeenCalledWith expectedQuery.filter
+
+        it "maps the result of the query into a format appropriate for select2", ->
+            expect(result).toEqual expectedResult

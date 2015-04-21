@@ -61,7 +61,7 @@ describe "Template editcollection handler \"submit form\"", ->
         expect(Collections.update).toHaveBeenCalledWith collection._id, {$set: _.pick(editedCollection, "name", "description", "contactEmail", "hostInstitution", "phenotypes", "specimenTypes", "ethnicities", "participantCount", "notes", "managingOrganization")}, jasmine.any(Function)
 
 
-describe "Template editcollection handler \"rendered\"", ->
+fdescribe "Template editcollection handler \"rendered\"", ->
 
     beforeEach ->
         spyOn $.fn, "select2"
@@ -69,3 +69,11 @@ describe "Template editcollection handler \"rendered\"", ->
 
     it "sets up the input.managingOrganization select2 box", ->
         expect($.fn.select2).toHaveBeenCalled()
+
+    it "initializes the value of the input.managingOrganization box", ->
+        org = _id: "a1s2d3f4", name: "My Organization"
+        spyOn Organizations, "findOne"
+            .and.returnValue org
+        Template.editcollection.rendered.bind(data: managingOrganization: org._id)()
+        expect(Organizations.findOne).toHaveBeenCalledWith _id: org._id
+        expect($.fn.select2).toHaveBeenCalledWith "data", {id: org._id, text: org.name}

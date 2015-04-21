@@ -25,3 +25,7 @@ Template.editcollection.rendered = ->
             minimumInputLength: 2
             query: (query) ->
                 query.callback Th.subscribeAndQueryOrganizations query.term
+    if !!@data and !!@data.managingOrganization
+        organization = Organizations.findOne "_id": @data.managingOrganization
+        $ "input[name=managingOrganization]"
+            .select2 "data", { id: organization._id, text: organization.name }

@@ -48,6 +48,7 @@ Router.map ->
         template: "editcollection"
         waitOn: ->
             Meteor.subscribe "collections"
+            Meteor.subscribe "organizations"
         data: -> Collections.findOne @params._id
     @route "viewProfile",
         path: "/profile"

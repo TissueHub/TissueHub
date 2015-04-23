@@ -88,3 +88,20 @@ describe "Permission helper", ->
             collection   = managingOrganization: "1234"
             organization = owners: [userId]
             testParameters userId, collection, organization, true
+
+        it "returns true if userId is a member of the managing organizations parent organization", ->
+            userId       = "abcdef"
+            collection   = managingOrganization: "1234"
+            organization = members: ["notUserId"], memberOf: "0987"
+            calls = 0
+            spyOn Organizations, "findOne"
+                .and.callFake ->
+                    if calls > 0 then organization.members.push userId
+                    calls++
+                    organization
+            spyOn global, "belongsToOrganization"
+                .and.callThrough()
+            expect(belongsToManagingOrganization userId, collection).toEqual true
+            expect(Organizations.findOne).toHaveBeenCalledWith "_id": collection.managingOrganization
+            expect(Organizations.findOne).toHaveBeenCalledWith "_id": organization.memberOf
+            expect(belongsToOrganization.calls.count()).toEqual 2

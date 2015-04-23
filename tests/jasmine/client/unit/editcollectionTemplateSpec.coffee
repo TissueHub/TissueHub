@@ -61,7 +61,7 @@ describe "Template editcollection handler \"submit form\"", ->
         expect(Collections.update).toHaveBeenCalledWith collection._id, {$set: _.pick(editedCollection, "name", "description", "contactEmail", "hostInstitution", "phenotypes", "specimenTypes", "ethnicities", "participantCount", "notes", "managingOrganization")}, jasmine.any(Function)
 
 
-fdescribe "Template editcollection handler \"rendered\"", ->
+describe "Template editcollection handler \"rendered\"", ->
 
     beforeEach ->
         spyOn $.fn, "select2"

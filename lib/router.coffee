@@ -82,7 +82,7 @@ Router.map ->
         path: "/organizations/:_id/edit"
         template: "editorganization"
         waitOn: ->
-            Meteor.subscribe "organizations", _id: @params._id
+            Meteor.subscribe "organizations"
             Meteor.subscribe "usersForOrganization", @params._id
         data: -> Organizations.findOne @params._id
 

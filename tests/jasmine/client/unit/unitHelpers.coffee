@@ -106,6 +106,7 @@ TestOrganizations = [
         description: "The Tufayl Biospecimen Collection Service"
         url: "https://specimens.tufayl.com/"
         dateCreated: now - 10 * week
+        memberOf: "organization0"
     }
     {
         owners: ["1234", "1357"]
@@ -114,6 +115,7 @@ TestOrganizations = [
         description: "An Example Biospecimen Collection Organization"
         url: "https://example.com"
         dateCreated: now - 10 * week
+        memberOf: "organization1"
     }
 ]
 

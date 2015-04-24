@@ -51,3 +51,18 @@ describe "Template vieworganization helper \"ownsOrganization\"", ->
         expect(result).toEqual value
         expect(Meteor.userId).toHaveBeenCalled()
         expect(ownsOrganization).toHaveBeenCalled()
+
+describe "Template vieworganization helper \"ownsOrganization\"", ->
+
+    organization = result = user = null
+
+    beforeEach ->
+        organization = Help.data.organizations[1]
+        spyOn Organizations, "findOne"
+            .and.returnValue organization
+        parent = Help.getHelper(Template.vieworganization, "parent").bind organization
+        result = parent()
+
+    it "finds the parent organization", ->
+        expect(Organizations.findOne).toHaveBeenCalledWith _id: organization.memberOf
+        expect(result).toEqual organization

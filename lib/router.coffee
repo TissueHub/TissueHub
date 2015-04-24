@@ -41,6 +41,7 @@ Router.map ->
         path: "/collections/:_id"
         template: "viewcollection"
         waitOn: ->
+            Meteor.subscribe "organizations"
             Meteor.subscribe "collections"
         data: -> Collections.findOne @params._id
     @route "editCollection",
@@ -75,7 +76,7 @@ Router.map ->
         path: "/organizations/:_id"
         template: "vieworganization"
         waitOn: ->
-            Meteor.subscribe "organizations", _id: @params._id
+            Meteor.subscribe "organizations"#, _id: @params._id
             Meteor.subscribe "usersForOrganization", @params._id
         data: -> Organizations.findOne @params._id
     @route "editOrganization",

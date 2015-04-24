@@ -5,6 +5,9 @@
     <h2>{{name}} <small><a href="{{url}}">{{url}}</a></small></h2>
     <p><a href="{{pathFor 'listOrganizations'}}">Back to Organization List</a></p>
     <p class="lead">{{description}}</p>
+    {{#if memberOf}}
+        <p>Member of <a href="{{pathFor 'viewOrganization' _id=memberOf}}">{{parent.name}}</a></p>
+    {{/if}}
     <h3>Members</h3>
     <ul class="members">
         {{#each allMembers}}

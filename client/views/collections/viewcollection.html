@@ -11,6 +11,12 @@
         <div class="col-sm-9"><a href="{{mailtoLink}}">{{contactEmail}}</a></div>
     </div>
     {{> attributeRow attribute="Host Institution" value=hostInstitution}}
+    {{#if managingOrganization}}
+    <div class="row">
+        <div class="col-sm-2"><strong>Managing Organization</strong></div>
+        <div class="col-sm-9"><a href="{{pathFor 'viewOrganization' _id=managingOrganization}}">{{managingOrganizationName}}</a></div>
+    </div>
+    {{/if}}
     {{> attributeRow attribute="Participant Count" value=participantCount}}
     {{#attributeRow attribute="Race/Ethnicities"}}
        {{> labelSet labels=ethnicities}}

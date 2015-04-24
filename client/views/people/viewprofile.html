@@ -1,6 +1,8 @@
 <template name="viewprofile">
     <span class="pull-right">
-        <a class="btn btn-default" href="{{pathFor 'editProfile'}}" title="Edit Profile" data-toggle="tooltip"><span class="glyphicon glyphicon-pencil"></span></a>
+        {{#if ownProfile}}
+            <a class="btn btn-default" href="{{pathFor 'editProfile'}}" title="Edit Profile" data-toggle="tooltip"><span class="glyphicon glyphicon-pencil"></span></a>
+        {{/if}}
     </span>
     <h2>{{profile.name}} <small>Profile</small></h2>
     {{> attributeRow attribute="Primary Email" value=email }}

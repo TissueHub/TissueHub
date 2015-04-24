@@ -41,6 +41,7 @@ Router.map ->
         path: "/collections/:_id"
         template: "viewcollection"
         waitOn: ->
+            Meteor.subscribe "organizations"
             Meteor.subscribe "collections"
         data: -> Collections.findOne @params._id
     @route "editCollection",
@@ -48,6 +49,7 @@ Router.map ->
         template: "editcollection"
         waitOn: ->
             Meteor.subscribe "collections"
+            Meteor.subscribe "organizations"
         data: -> Collections.findOne @params._id
     @route "viewProfile",
         path: "/profile"
@@ -57,6 +59,33 @@ Router.map ->
         path: "/profile/edit"
         template: "editprofile"
         data: -> Meteor.user()
+    @route "viewUserProfile",
+        path: "/profile/:_id"
+        template: "viewprofile"
+        waitOn: ->
+            Meteor.subscribe "publicUsers", @params._id
+        data: -> Meteor.users.findOne @params._id
+    @route "listOrganizations",
+        path: "/organizations"
+        template: "listorganizations"
+        waitOn: -> Meteor.subscribe "organizations"
+    @route "addOrganization",
+        path: "/organizations/new"
+        template: "addorganization"
+    @route "viewOrganization",
+        path: "/organizations/:_id"
+        template: "vieworganization"
+        waitOn: ->
+            Meteor.subscribe "organizations"#, _id: @params._id
+            Meteor.subscribe "usersForOrganization", @params._id
+        data: -> Organizations.findOne @params._id
+    @route "editOrganization",
+        path: "/organizations/:_id/edit"
+        template: "editorganization"
+        waitOn: ->
+            Meteor.subscribe "organizations"
+            Meteor.subscribe "usersForOrganization", @params._id
+        data: -> Organizations.findOne @params._id
 
 Router.onAfterAction ->
     ga? "send", "pageview"

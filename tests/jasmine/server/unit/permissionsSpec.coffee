@@ -48,3 +48,60 @@ describe "Permission helper", ->
                 .and.returnValue true
             result = canEdit()
             expect(result).toBe true
+
+        it "returns true if belongsToManagingOrganization(userId, doc)", ->
+            spyOn global, "belongsToManagingOrganization"
+                .and.returnValue true
+            result = canEdit()
+            expect(result).toBe true
+
+        it "returns false otherwise", ->
+            result = canEdit()
+            expect(result).toBe false
+
+    describe "ownsOrganization(userId, organization)", ->
+
+        it "returns true if userId is in organization.owners", ->
+            result = ownsOrganization "1234", owners: ["2345", "23562", "1234", "1642"]
+            expect(result).toEqual true
+
+        it "returns false if userId is not in organization.owners", ->
+            result = ownsOrganization "1234", owners: ["2345", "23562", "123334", "1642"]
+            expect(result).toEqual false
+
+    describe "belongsToManagingOrganization", ->
+
+        testParameters = (userId, collection, organization, expectedResult) ->
+            spyOn Organizations, "findOne"
+                .and.returnValue organization
+            expect(belongsToManagingOrganization userId, collection).toEqual expectedResult
+            expect(Organizations.findOne).toHaveBeenCalledWith "_id": collection.managingOrganization
+
+        it "returns true if userId is a member of the managing organization", ->
+            userId       = "abcdef"
+            collection   = managingOrganization: "1234"
+            organization = members: [userId]
+            testParameters userId, collection, organization, true
+
+        it "returns true if userId is an owner of the managing organization", ->
+            userId       = "abcdef"
+            collection   = managingOrganization: "1234"
+            organization = owners: [userId]
+            testParameters userId, collection, organization, true
+
+        it "returns true if userId is a member of the managing organizations parent organization", ->
+            userId       = "abcdef"
+            collection   = managingOrganization: "1234"
+            organization = members: ["notUserId"], memberOf: "0987"
+            calls = 0
+            spyOn Organizations, "findOne"
+                .and.callFake ->
+                    if calls > 0 then organization.members.push userId
+                    calls++
+                    organization
+            spyOn global, "belongsToOrganization"
+                .and.callThrough()
+            expect(belongsToManagingOrganization userId, collection).toEqual true
+            expect(Organizations.findOne).toHaveBeenCalledWith "_id": collection.managingOrganization
+            expect(Organizations.findOne).toHaveBeenCalledWith "_id": organization.memberOf
+            expect(belongsToOrganization.calls.count()).toEqual 2

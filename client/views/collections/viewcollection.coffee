@@ -4,6 +4,7 @@ Template.viewcollection.helpers
     mailtoLink: ->
         contactEmail = @contactEmail?.replace /\ /g, ""
         "mailto:#{contactEmail}?cc=collaboration_coordination@tissuehub.org&subject=Collaboration%20on%20#{@name}"
+    managingOrganizationName: -> Organizations.findOne(_id: @managingOrganization).name
 
 Template.viewcollection.events
     "click .delete": (e) ->

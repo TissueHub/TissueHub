@@ -2,19 +2,24 @@ Users =
     "New User 1":
         email: "newuser1@example.com"
         password: "password"
+        _id: "1234"
+        #id: "1234"
     "Isa Tufayl":
         profile:
             name: "Isa Tufayl"
         email: "isa@tufayl.com"
         username: "isa"
         password: "password"
-        id: "n6a7DAMaa39tH8DYQ"
+        #id: "n6a7DAMaa39tH8DYQ"
+        _id: "n6a7DAMaa39tH8DYQ"
     "Admin":
         profile:
             name: "Admin"
         email: "admin@example.com"
         username: "admin"
         password: "password"
+        #id: "n6a7DAMaa39tH8DY2"
+        _id: "n6a7DAMaa39tH8DY2"
 
 now = new Date().getTime()
 hour = 1000 * 60 * 60 # ms * sec * min
@@ -43,6 +48,8 @@ TestCollections = [
         recruitmentStatus: "active"
         dateCreated: now
         owner: "n6a7DAMaa39tH8DYQ"
+        notes: "A notable note."
+        managingOrganization: "1234"
     }
     {
         name: "CLEAR"
@@ -90,6 +97,28 @@ TestCollections = [
     }
 ]
 
+TestOrganizations = [
+    {
+        _id: "organization1"
+        owners: ["1234"]
+        members: ["5678"]
+        name: "Tufayl Biospecimens"
+        description: "The Tufayl Biospecimen Collection Service"
+        url: "https://specimens.tufayl.com/"
+        dateCreated: now - 10 * week
+        memberOf: "organization0"
+    }
+    {
+        owners: ["1234", "1357"]
+        members: ["5678", "9012"]
+        name: "Example Organization"
+        description: "An Example Biospecimen Collection Organization"
+        url: "https://example.com"
+        dateCreated: now - 10 * week
+        memberOf: "organization1"
+    }
+]
+
 @Help =
     loginUser: (user, done) ->
         Meteor.loginWithPassword user.email, user.password, done
@@ -101,15 +130,23 @@ TestCollections = [
         Meteor.logout done
     getHelper: (template, helperName) ->
         template.__helpers.get(helperName)
-    callEventHandler: (template, eventName, e) ->
-        spyOn Blaze, "getData"
-            .and.returnValue {}
+    callEventHandler: (template, eventName, e, data) ->
+        if Blaze.getData.calls
+            Blaze.getData.and.returnValue data || {}
+        else
+            spyOn Blaze, "getData"
+                .and.returnValue data || {}
         template.__eventMaps[0][eventName].call({templateInstance: -> }, e)
     spyOnHelper: (template, helperName, replacement) ->
         spy = jasmine.createSpy helperName
         if replacement then spy.and.callFake replacement
         template.__helpers.set(helperName, spy)
         return spy
+    renderTemplate: (template, data) ->
+        div = document.createElement "div"
+        if data then Blaze.renderWithData template, data, div else Blaze.render template, div
+        return div
     data:
         users: Users
         collections: TestCollections
+        organizations: TestOrganizations

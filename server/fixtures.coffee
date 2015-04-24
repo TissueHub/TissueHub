@@ -197,3 +197,19 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
             owner: user._id
 
     insertRandomCollection num for num in [0..100]
+
+    tufayl =
+        owners: [isa._id]
+        members: [bob._id]
+        name: "Tufayl Biospecimens"
+        description: "The Tufayl Biospecimen Collection Service"
+        url: "https://specimens.tufayl.com/"
+    tufaylId = Organizations.insert tufayl
+
+    example =
+        owners: [admin._id, isa._id]
+        members: [bob._id, kallie._id]
+        name: "Example Organization"
+        description: "An Example Biospecimen Collection Organization"
+        url: "https://example.com"
+    exampleId = Organizations.insert example

@@ -51,3 +51,21 @@ describe "Template viewcollection", ->
             div = renderTemplate()
             expect($(div).find("a.edit").length).toEqual 0
             expect($(div).find("a.delete").length).toEqual 0
+
+describe "Template viewcollection helper \"managingOrganizationName\"", ->
+
+    collection =  organization = result = user = null
+
+    beforeEach ->
+        collection = managingOrganization: "1234"
+        organization = name: "My Organization"
+        spyOn Organizations, "findOne"
+            .and.returnValue organization
+        managingOrganizationName = Help.getHelper(Template.viewcollection, "managingOrganizationName").bind collection
+        result = managingOrganizationName()
+
+    it "finds the managingOrganization", ->
+        expect(Organizations.findOne).toHaveBeenCalledWith _id: collection.managingOrganization
+
+    it "extracts the name from the managingOrganization", ->
+        expect(result).toEqual organization.name

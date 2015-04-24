@@ -1,0 +1,28 @@
+<template name="listorganizations">
+    <span class="pull-right">
+        <a class="btn btn-default" href="{{pathFor 'addOrganization'}}" title="Add Organization" data-toggle="tooltip"><span class="glyphicon glyphicon-plus"></span></a>
+    </span>
+    <h2>Organizations</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each organizations}}
+                {{> organizationRow}}
+            {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name="organizationRow">
+    <tr>
+        <td><a href="{{pathFor 'viewOrganization'}}">{{name}}</a></td>
+        <td>{{description}}</td>
+        <td>{{url}}</td>
+    </tr>
+</template>

@@ -59,6 +59,9 @@ describe "Client utility helper Th", ->
         expectedQuery = $or: [
             { "profile.name": $regex: term, $options: "i" }
             { "profile.email": $regex: term, $options: "i" }
+            { "emails": { $elemMatch: { "address": {$regex: term, $options: "i" }}}}
+            { "services.github.email": $regex: term, $options: "i" }
+            { "services.google.email": $regex: term, $options: "i" }
         ]
         result = expectedResult = null
 

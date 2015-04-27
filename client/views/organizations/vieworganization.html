@@ -18,7 +18,7 @@
 
 <template name="organizationMember">
     <li>
-        <a href="{{pathFor 'viewUserProfile'}}">{{username}}</a>
+        <a href="{{pathFor 'viewUserProfile'}}">{{displayName}}</a>
         {{#if owner}}
             <span class="label label-info">Owner</span>
         {{/if}}

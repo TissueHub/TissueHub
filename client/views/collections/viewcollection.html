@@ -32,29 +32,7 @@
         <p>{{notes}}</p>
     {{/if}}
 
-    <h4>Specimens ({{specimenCount}} Total)</h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Phenotype</th>
-                <th>Ethnicity</th>
-                <th>Pathalogical Diagnosis</th>
-                <th>Collection Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each specimens}}
-                <tr>
-                    <td>{{localId}}</td>
-                    <td>{{type}}</td>
-                    <td>{{phenotype}}</td>
-                    <td>{{ethnicity}}</td>
-                    <td>{{pathalogicalDiagnosis}}</td>
-                    <td>{{procedure.date}}</td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    <h3>Specimens in {{name}}</h3>
+    {{> tabular table=TabularTables.Specimens selector=selector class="table table-striped table-bordered table-condensed"}}
+
 </template>

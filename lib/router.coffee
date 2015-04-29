@@ -17,8 +17,6 @@ CollectionListController = RouteController.extend
 Router.configure
     layoutTemplate: "layout"
     loadingTemplate: "loading"
-    # waitOn: ->
-    #     Meteor.subscribe "specimens"
 
 Router.map ->
     @route "home",
@@ -45,7 +43,6 @@ Router.map ->
         waitOn: ->
             Meteor.subscribe "organizations"
             Meteor.subscribe "collections"
-            Meteor.subscribe "specimensForCollection", @params._id
         data: -> Collections.findOne @params._id
     @route "editCollection",
         path: "/collections/:_id/edit"

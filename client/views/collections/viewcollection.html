@@ -31,4 +31,30 @@
         <h4>Notes</h4>
         <p>{{notes}}</p>
     {{/if}}
+
+    <h4>Specimens ({{specimenCount}} Total)</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Phenotype</th>
+                <th>Ethnicity</th>
+                <th>Pathalogical Diagnosis</th>
+                <th>Collection Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each specimens}}
+                <tr>
+                    <td>{{localId}}</td>
+                    <td>{{type}}</td>
+                    <td>{{phenotype}}</td>
+                    <td>{{ethnicity}}</td>
+                    <td>{{pathalogicalDiagnosis}}</td>
+                    <td>{{procedure.date}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </template>

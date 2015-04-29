@@ -1,0 +1,1 @@
+@Specimens = new Meteor.Collection "specimens"

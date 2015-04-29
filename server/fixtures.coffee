@@ -97,7 +97,27 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
         "PBMC"
     ]
 
-    Collections.insert
+    procedures = [
+        "Surgery"
+        "Phlebotomy"
+        "Biopsy"
+        "Autopsy"
+        "Transplant"
+    ]
+
+    pathalogicalDiagnoses = [
+        "Normal"
+        "Glioma"
+        "Gliosarcoma"
+        "Infarction"
+        "Adenoma"
+        "Carcinoma"
+        "Hyperplasia"
+        "Endocrine Disorder"
+        "Neuroblastoma"
+    ]
+
+    radarId = Collections.insert
             name: "RADAR"
             description: "Rheumatoid Arthritis Database and Repository"
             phenotypes: [
@@ -117,7 +137,7 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
             recruitmentStatus: "active"
             dateCreated: now
             owner: kallie._id
-    Collections.insert
+    clearId = Collections.insert
             name: "CLEAR"
             description: "Consortium for the Longitudinal Evaluation of African Americans with Rheumatiod Arthritis"
             phenotypes: [
@@ -142,7 +162,7 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
             recruitmentStatus: "closed"
             dateCreated: now - 25 * week
             owner: kallie._id
-    Collections.insert
+    strengthId = Collections.insert
             name: "STRENGTH"
             description: ""
             phenotypes: [
@@ -161,7 +181,7 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
             recruitmentStatus: ""
             dateCreated: now - 10 * week
             owner: isa._id
-    Collections.insert
+    cctsCoreId = Collections.insert
             name: "CCTS Core Laboratory"
             description: null
             phenotypes: [
@@ -213,3 +233,22 @@ if Collections.find().count() is 0 and process.env.NODE_ENV is "development"
         description: "An Example Biospecimen Collection Organization"
         url: "https://example.com"
     exampleId = Organizations.insert example
+
+    collections = [radarId, clearId, cctsCoreId]
+
+    insertRandomSpecimen = (n) ->
+        Specimens.insert
+            localId: "specimen#{n}"
+            partOf: takeAFew collections, randomInt(1,2)
+            type: takeOne specimenTypes
+            phenotype: takeOne phenotypes
+            ethnicity: takeOne ethnicities
+            procedure:
+                date: now - randomInt(0,90) * day
+                type: takeOne procedures
+            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            outcomes: ["Outcome 1", "Outcome 2"]
+            pathalogicalDiagnosis: takeOne pathalogicalDiagnoses
+
+
+    insertRandomSpecimen num for num in [0..250]

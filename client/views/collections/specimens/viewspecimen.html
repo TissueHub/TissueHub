@@ -1,0 +1,15 @@
+<template name="viewspecimen">
+    <h2>Specimen {{specimen.localId}} in {{collection.name}}</h2>
+    <p><a href="{{pathFor 'listSpecimens' _id=collection._id}}">Back to Specimen List</a></p>
+    <p>{{specimen.description}}</p>
+    {{> attributeRow attribute="Type" value=specimen.type}}
+    {{> attributeRow attribute="Pathologic Diagnosis" value=specimen.pathalogicalDiagnosis}}
+    {{> attributeRow attribute="Type" value=specimen.type}}
+    {{> attributeRow attribute="Phenotype" value=specimen.phenotype}}
+    {{> attributeRow attribute="Race/Ethnicity" value=specimen.ethnicity}}
+    {{#attributeRow attribute="Outcomes"}}
+       {{> labelSet labels=specimen.outcomes}}
+    {{/attributeRow}}
+    {{> attributeRow attribute="Procedure Date" value=collectionDate}}
+    {{> attributeRow attribute="Procedure Type" value=specimen.procedure.type}}
+</template>

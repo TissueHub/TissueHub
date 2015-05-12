@@ -33,6 +33,8 @@ describe "Template viewcollection", ->
 
         renderTemplate = ->
             div = document.createElement "div"
+            spyOn Organizations, "findOne"
+                .and.returnValue {}
             Blaze.renderWithData Template.viewcollection, data, div
             return div
 

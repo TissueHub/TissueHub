@@ -58,6 +58,12 @@ These can be set in the environment, or just prepended to the `node main.js` com
 $ PORT=3001 MONGO_URL=mongodb://localhost/TissueHub MONGO_OPLOG_URL=mongodb://localhost/local ROOT_URL="https://tissuehub.org/" node main.js
 ```
 
+It is also possible to run meteor without the tests:
+
+```shell
+$ JASMINE_CLIENT_INTEGRATION=0 JASMINE_CLIENT_UNIT=0 JASMINE_SERVER_INTEGRATION=0 JASMINE_SERVER_UNIT=0 meteor
+```
+
 [1]: https://tissuehub.org/ "TissueHub App"
 [2]: http://tissuehub.meteor.com/ "TissueHub Development Site"
 [3]: https://travis-ci.org/TissueHub/TissueHub "TissueHub Continuous Integration at Travis-CI"

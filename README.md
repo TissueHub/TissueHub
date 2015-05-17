@@ -6,7 +6,7 @@ TissueHub aspires to be a socially federated storefront for biospecimen reposito
 
 The ultimate vision of TissueHub is the creation of a biospecimen resource with three core constituencies: managers of large biospecimen collections, investigators, and patients (donors). Borrowing the federated storefront model of, e.g., Amazon and extending it with social networking features, the federated biorepositories will serve as a “TissueHub”. This TissueHub will enable the holders of biospecimens to publish their collections and services. Investigators can use TissueHub to discover available specimens as well as opportunities for collaboration with others holding overlapping rare-specimen collections. Finally, TissueHub will allow donors to discover opportunities to contribute to scientific studies, as well as to see the research data and publications derived from these contributions.
 
-## Development [![Build Status](https://travis-ci.org/TissueHub/TissueHub.svg?branch=master)](https://travis-ci.org/TissueHub/TissueHub)
+## Development [![Build Status](https://travis-ci.org/TissueHub/TissueHub.svg?branch=v1.1.1)](https://travis-ci.org/TissueHub/TissueHub)
 
 The initial prototype of TissueHub is under development as a [Meteor](https://www.meteor.com/ "Meteor Homepage") app. To start, first install meteor, then:
 

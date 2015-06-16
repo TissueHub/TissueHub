@@ -1,4 +1,5 @@
 <template name="addspecimen">
     <h2>Add Specimen{{#if collecion}} to {{collection.name}}{{/if}}</h2>
+    <p><a href="{{pathFor 'listSpecimens' _id=collection._id}}">Back to Specimen List</a></p>
     {{> quickForm collection="Specimens" id="insertSpecimenForm" type="insert"}}
 </template>

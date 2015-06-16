@@ -1,0 +1,5 @@
+<template name="editspecimen">
+    <h2>Edit Specimen {{specimen.localId}}{{#if collecion}}  in {{collection.name}}{{/if}}</h2>
+    <p><a href="{{pathFor 'listSpecimens' _id=collection._id}}">Back to Specimen List</a></p>
+    {{> quickForm collection="Specimens" doc=specimen id="insertSpecimenForm" type="update"}}
+</template>

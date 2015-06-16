@@ -101,6 +101,13 @@ Router.map ->
         data: ->
             collection: Collections.findOne @params.collectionId
             specimen: Specimens.findOne @params.specimenId
+    @route "editSpecimen",
+        path: "/collections/:collectionId/specimens/:specimenId/edit"
+        template: "editspecimen"
+        waitOn: -> Meteor.subscribe "specimen", @params.collectionId, @params.specimenId
+        data: ->
+            collection: Collections.findOne @params.collectionId
+            specimen: Specimens.findOne @params.specimenId
 
 Router.onAfterAction ->
     ga? "send", "pageview"

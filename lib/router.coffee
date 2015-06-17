@@ -89,6 +89,15 @@ Router.map ->
     @route "addSpecimen",
         path: "/collections/:_id/specimens/new"
         template: "addspecimen"
+        data: -> collection: Collections.findOne _id: @params._id
+        waitOn: ->
+            Meteor.subscribe "collections"
+    @route "addSpecimenBulk",
+        path: "/collections/:_id/specimens/bulkAdd"
+        template: "addspecimenbulk"
+        data: -> collection: Collections.findOne _id: @params._id
+        waitOn: ->
+            Meteor.subscribe "collections"
     @route "listSpecimens",
         path: "/collections/:_id/specimens"
         template: "listspecimens"

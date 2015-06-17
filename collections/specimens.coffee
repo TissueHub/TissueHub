@@ -9,7 +9,7 @@ Specimens.attachSchema new SimpleSchema
         type: String
         label: "Local ID"
     partOf:
-        type: String
+        type: [String]
         label: "Collection Part Of"
     type:
         type: String

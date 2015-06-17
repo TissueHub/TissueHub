@@ -1,4 +1,9 @@
 @Specimens = Specimens = new Mongo.Collection "specimens"
+
+Specimens.allow
+    insert: canEditSpecimen
+    update: canEditSpecimen
+
 Specimens.attachSchema new SimpleSchema
     localId:
         type: String

@@ -7,6 +7,6 @@
         <a href="{{pathFor 'viewCollection' _id=collection._id}}">Back to Collection</a>
     </p>
 
-    {{> bulkInterface targetCollection="Specimens" key="localId" afterParse=afterParseHandler}}
+    {{> bulkInterface interface=BulkInterfaces.addSpecimens afterParse=afterParseHandler}}
 
 </template>

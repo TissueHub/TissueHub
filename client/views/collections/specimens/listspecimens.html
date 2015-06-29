@@ -1,0 +1,5 @@
+<template name="listspecimens">
+    <h2>Specimens in {{collection.name}}</h2>
+    <p><a href="{{pathFor 'viewCollection' _id=collection._id}}">Back to Collection</a></p>
+    {{> tabular table=TabularTables.Specimens selector=selector class="table table-striped table-bordered table-condensed"}}
+</template>

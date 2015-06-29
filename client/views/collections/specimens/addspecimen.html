@@ -1,0 +1,23 @@
+<template name="addspecimen">
+    <span class="pull-right">
+        <a class="btn btn-default btn-sm" href="{{pathFor 'addSpecimenBulk' _id=collection._id}}"><span class="glyphicon glyphicon-upload"> Bulk-Add</span></a>
+    </span>
+    <h2>Add Specimen{{#if collection}} to {{collection.name}}{{/if}}</h2>
+    <p>
+        <a href="{{pathFor 'viewCollection' _id=collection._id}}">Back to Collection</a>
+    </p>
+
+    {{#autoForm collection="Specimens" id="insertSpecimenForm2" type="insert" doc=specimen}}
+        {{> afQuickField name='localId'}}
+        {{> afQuickField name='type'}}
+        {{> afQuickField name='phenotype'}}
+        {{> afQuickField name='ethnicity'}}
+        {{> afQuickFields name='procedure'}}
+        {{> afQuickField name='pathalogicalDiagnosis' rows=3}}
+        {{> afQuickField name='outcomes'}}
+        {{> afQuickField name='description' rows=3}}
+        {{> afQuickField name='partOf'}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    {{/autoForm}}
+
+</template>

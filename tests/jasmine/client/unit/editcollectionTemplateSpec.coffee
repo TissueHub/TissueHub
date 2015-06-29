@@ -74,6 +74,6 @@ describe "Template editcollection handler \"rendered\"", ->
         org = _id: "a1s2d3f4", name: "My Organization"
         spyOn Organizations, "findOne"
             .and.returnValue org
-        Template.editcollection.rendered.bind(data: managingOrganization: org._id)()
+        Template.editcollection.rendered.bind(viewName: "editcollection", data: managingOrganization: org._id)()
         expect(Organizations.findOne).toHaveBeenCalledWith _id: org._id
         expect($.fn.select2).toHaveBeenCalledWith "data", {id: org._id, text: org.name}

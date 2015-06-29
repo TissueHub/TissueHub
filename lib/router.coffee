@@ -86,6 +86,39 @@ Router.map ->
             Meteor.subscribe "organizations"
             Meteor.subscribe "usersForOrganization", @params._id
         data: -> Organizations.findOne @params._id
+    @route "addSpecimen",
+        path: "/collections/:_id/specimens/new"
+        template: "addspecimen"
+        data: ->
+            collection: Collections.findOne _id: @params._id
+            specimen: partOf: [@params._id]
+        waitOn: ->
+            Meteor.subscribe "collections"
+    @route "addSpecimenBulk",
+        path: "/collections/:_id/specimens/bulkAdd"
+        template: "addspecimenbulk"
+        data: -> collection: Collections.findOne _id: @params._id
+        waitOn: ->
+            Meteor.subscribe "collections"
+    @route "listSpecimens",
+        path: "/collections/:_id/specimens"
+        template: "listspecimens"
+        waitOn: -> Meteor.subscribe "collections"
+        data: -> collection: Collections.findOne @params._id
+    @route "viewSpecimen",
+        path: "/collections/:collectionId/specimens/:specimenId"
+        template: "viewspecimen"
+        waitOn: -> Meteor.subscribe "specimen", @params.collectionId, @params.specimenId
+        data: ->
+            collection: Collections.findOne @params.collectionId
+            specimen: Specimens.findOne @params.specimenId
+    @route "editSpecimen",
+        path: "/collections/:collectionId/specimens/:specimenId/edit"
+        template: "editspecimen"
+        waitOn: -> Meteor.subscribe "specimen", @params.collectionId, @params.specimenId
+        data: ->
+            collection: Collections.findOne @params.collectionId
+            specimen: Specimens.findOne @params.specimenId
 
 Router.onAfterAction ->
     ga? "send", "pageview"

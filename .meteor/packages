@@ -21,3 +21,11 @@ mrt:accounts-admin-ui-bootstrap-3
 sanjo:jasmine
 velocity:html-reporter
 velocity:console-reporter
+msavin:mongol
+msavin:jetsetter
+aldeed:tabular
+mrt:moment
+aldeed:simple-schema
+aldeed:autoform
+aldeed:collection2
+robbinsd:bulk-interface

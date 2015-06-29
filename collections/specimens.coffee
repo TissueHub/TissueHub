@@ -10,7 +10,7 @@ Specimens.attachSchema new SimpleSchema
         label: "Local ID"
     partOf:
         type: [String]
-        label: "Collection Part Of"
+        label: "Collections Part Of"
     type:
         type: String
         label: "Specimen Type"

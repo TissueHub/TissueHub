@@ -1,5 +1,18 @@
 <template name="editspecimen">
     <h2>Edit Specimen {{specimen.localId}}{{#if collecion}}  in {{collection.name}}{{/if}}</h2>
     <p><a href="{{pathFor 'listSpecimens' _id=collection._id}}">Back to Specimen List</a></p>
-    {{> quickForm collection="Specimens" doc=specimen id="insertSpecimenForm" type="update"}}
+
+    {{#autoForm collection="Specimens" id="editSpecimenForm" type="update" doc=specimen}}
+        {{> afQuickField name='localId'}}
+        {{> afQuickField name='type'}}
+        {{> afQuickField name='phenotype'}}
+        {{> afQuickField name='ethnicity'}}
+        {{> afQuickFields name='procedure'}}
+        {{> afQuickField name='pathalogicalDiagnosis' rows=3}}
+        {{> afQuickField name='outcomes'}}
+        {{> afQuickField name='description' rows=3}}
+        {{> afQuickField name='partOf'}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    {{/autoForm}}
+
 </template>

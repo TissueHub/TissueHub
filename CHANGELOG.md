@@ -4,8 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This changelog follows [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased][unreleased]
+### Added
 ### Changed
-- Improve argument against commit logs.
+### Removed
+### Fixed
+
+## [1.2.0] - 2015-06-29
+### Added
+- Specimens. Added specimens-level detail tracking within Collections.
 
 ## [1.1.0] - 2015-04-24
 ### Added
@@ -23,6 +29,7 @@ Initial release via build system.
 - Tests
 - Build scripts
 
-[unreleased]: https://github.com/TissueHub/TissueHub/compare/v1.0.2...HEAD
-[1.1.0]: https://github.com/TissueHub/TissueHub/compare/v1.0.2...1.1.0
+[unreleased]: https://github.com/TissueHub/TissueHub/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/TissueHub/TissueHub/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/TissueHub/TissueHub/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/TissueHub/TissueHub/compare/v1.0.1...v1.0.2

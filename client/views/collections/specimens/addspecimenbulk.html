@@ -7,6 +7,35 @@
         <a href="{{pathFor 'viewCollection' _id=collection._id}}">Back to Collection</a>
     </p>
 
+    <div class="panel panel-info">
+        <div class="panel-heading text-right">
+            <h4 class="panel-title"><a href="#addspecimenbulkhelp" data-toggle="collapse" role="button">
+                Usage Instructions
+            </a></h4>
+        </div>
+        <div id="addspecimenbulkhelp" class="panel-collapse collapse">
+            <div class="panel-body">
+                <span class="pull-right">
+                    <a class="btn btn-default" href="/SampleBulkSpecimenData.xlsx"> Download Example File</a>
+                </span>
+                <p>Enter tab-separated data (e.g. copied from Excel), with one data field per column.</p>
+                <p>Known Fields (case sensitive)
+                    <ul>
+                        <li>localId</li>
+                        <li>type</li>
+                        <li>phenotype</li>
+                        <li>ethnicity</li>
+                        <li>outcomes</li>
+                        <li>pathalogicalDiagnosis</li>
+                        <li>description</li>
+                    </ul>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+
     {{> bulkInterface interface=BulkInterfaces.addSpecimens afterParse=afterParseHandler}}
 
 </template>

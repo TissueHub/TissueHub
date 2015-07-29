@@ -27,3 +27,8 @@ aldeed:simple-schema
 aldeed:autoform
 aldeed:collection2
 robbinsd:bulk-interface
+constellation:console
+constellation:subscriptions
+constellation:autopublish
+constellation:session
+babrahams:temple

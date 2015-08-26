@@ -5,7 +5,11 @@ This changelog follows [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased][unreleased]
 ### Added
+
 ### Changed
+- Numerous package updates.
+- Switched from meteortoys to constellation
+
 ### Removed
 ### Fixed
 

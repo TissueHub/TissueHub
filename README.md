@@ -18,7 +18,7 @@ meteor
 
 ### Building
 
-1. Ensure the `VERSION` environment variable in .travis.yml is correct.
+1. Ensure the `TISSUEHUB_VERSION` environment variable in .travis.yml is correct.
 2. Kick off the build using `make`
 
     ```shell

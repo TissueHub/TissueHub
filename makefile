@@ -8,7 +8,7 @@ clean:
 	rm -rf .build/*
 
 test:
-	JASMINE_BROWSER=PhantomJS meteor --test
+	JASMINE_CLIENT_INTEGRATION=0 JASMINE_BROWSER=PhantomJS meteor --test
 
 upload: build
 	scp .build/tissuehub-$(TISSUEHUB_VERSION).tar.gz tissuehub.org:tissuehub-builds/tissuehub-$(TISSUEHUB_VERSION).tar.gz

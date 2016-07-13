@@ -9,7 +9,6 @@ mizzao:bootstrap-3
 accounts-password
 accounts-google
 accounts-github
-rajit:accounts-ui-bootstrap-3
 iron:router
 meteorhacks:kadira
 steeve:simple-bootstrap3-alerts
@@ -18,9 +17,6 @@ natestrauser:select2
 zimme:select2-bootstrap3-css
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
-sanjo:jasmine
-velocity:html-reporter
-velocity:console-reporter
 aldeed:tabular
 mrt:moment
 aldeed:simple-schema
@@ -31,3 +27,7 @@ constellation:console
 constellation:subscriptions
 constellation:autopublish
 constellation:session
+standard-minifier-css
+standard-minifier-js
+useraccounts:bootstrap
+useraccounts:iron-routing

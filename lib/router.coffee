@@ -124,3 +124,11 @@ Router.onAfterAction ->
     ga? "send", "pageview"
 
 Router.onBeforeAction "loading"
+
+AccountsTemplates.configureRoute "changePwd"
+AccountsTemplates.configureRoute "enrollAccount"
+#AccountsTemplates.configureRoute "forgotPwd"
+AccountsTemplates.configureRoute "resetPwd"
+AccountsTemplates.configureRoute "signIn"
+AccountsTemplates.configureRoute "signUp"
+#AccountsTemplates.configureRoute "verifyEmail"

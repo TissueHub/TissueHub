@@ -6,8 +6,11 @@ This changelog follows [Keep a Changelog](http://keepachangelog.com/).
 ## [Unreleased][unreleased]
 ### Added
 ### Changed
+- Numerous package updates.
 ### Removed
+- Deprecated testing frameworks and tests
 ### Fixed
+- Links from individual specimens back to collection
 
 ## [1.2.2] - 2015-08-26
 ### Changed

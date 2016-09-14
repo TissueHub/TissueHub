@@ -9,54 +9,18 @@ Th.makeFiltersFromTerms = function(terms) {
     var filter;
     return filter = {
       $or: [
-        {
-          hostInstitution: {
-            $regex: term,
-            $options: "i"
-          }
-        }, {
-          name: {
-            $regex: term,
-            $options: "i"
-          }
-        }, {
-          description: {
-            $regex: term,
-            $options: "i"
-          }
-        }, {
-          ethnicities: {
-            $regex: term,
-            $options: "i"
-          }
-        }, {
-          phenotypes: {
-            $regex: term,
-            $options: "i"
-          }
-        }, {
-          specimenTypes: {
-            $regex: term,
-            $options: "i"
-          }
-        }
+        { hostInstitution: { $regex: term, $options: "i" } },
+        { name: { $regex: term, $options: "i" } },
+        { description: { $regex: term, $options: "i" } },
+        { ethnicities: { $regex: term, $options: "i" } },
+        { phenotypes: { $regex: term, $options: "i" } },
+        { specimenTypes: { $regex: term, $options: "i" } }
       ]
     };
   };
   filters = {
-    $and: (function() {
-      var i, len, ref, results;
-      ref = terms.split(",");
-      results = [];
-      for (i = 0, len = ref.length; i < len; i++) {
-        term = ref[i];
-        if (term) {
-          results.push(makefilter(term));
-        }
-      }
-      return results;
-    })()
-  };
+    $and: terms.split(",").map(makefilter)
+  }
   return filters;
 };
 
@@ -104,36 +68,11 @@ Th.subscribeAndQueryUsers = function(term) {
   var query, users;
   query = {
     $or: [
-      {
-        "profile.name": {
-          $regex: term,
-          $options: "i"
-        }
-      }, {
-        "profile.email": {
-          $regex: term,
-          $options: "i"
-        }
-      }, {
-        "emails": {
-          $elemMatch: {
-            "address": {
-              $regex: term,
-              $options: "i"
-            }
-          }
-        }
-      }, {
-        "services.github.email": {
-          $regex: term,
-          $options: "i"
-        }
-      }, {
-        "services.google.email": {
-          $regex: term,
-          $options: "i"
-        }
-      }
+      { "profile.name": { $regex: term, $options: "i" } },
+      { "profile.email": { $regex: term, $options: "i" } },
+      { "emails": { $elemMatch: { "address": { $regex: term, $options: "i" } } } },
+      { "services.github.email": { $regex: term, $options: "i" } },
+      { "services.google.email": { $regex: term, $options: "i" } }
     ]
   };
   Meteor.subscribe("users", query);
@@ -150,12 +89,7 @@ Th.subscribeAndQueryUsers = function(term) {
 Th.subscribeAndQueryOrganizations = function(term) {
   var organizations, query;
   query = {
-    filter: {
-      name: {
-        $regex: term,
-        $options: "i"
-      }
-    },
+    filter: { name: { $regex: term, $options: "i" } },
     limit: 5
   };
   Meteor.subscribe("organizations", query);

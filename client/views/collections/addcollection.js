@@ -9,14 +9,18 @@ Template.addcollection.events({
   "submit form": function(e) {
     var collection, ref, ref1, ref2;
     e.preventDefault();
+    function arrayVal(selector, e) {
+      let val = $(e.target).find(selector).val();
+      return val.split(",");
+    }
     collection = {
       name: $(e.target).find("[name=name]").val(),
       description: $(e.target).find("[name=description]").val(),
       contactEmail: $(e.target).find("[name=contactEmail]").val(),
       hostInstitution: $(e.target).find("[name=hostInstitution]").val(),
-      phenotypes: (ref = $(e.target).find("[name=phenotypes]").val()) != null ? ref.split(",") : void 0,
-      specimenTypes: (ref1 = $(e.target).find("[name=specimenTypes]").val()) != null ? ref1.split(",") : void 0,
-      ethnicities: (ref2 = $(e.target).find("[name=ethnicities]").val()) != null ? ref2.split(",") : void 0,
+      phenotypes: arrayVal("[name=phenotypes]", e),
+      specimenTypes: arrayVal("[name=specimenTypes]", e),
+      ethnicities: arrayVal("[name=ethnicities]", e),
       participantCount: parseInt($(e.target).find("[name=participantCount]").val()),
       notes: $(e.target).find("[name=notes]").val()
     };

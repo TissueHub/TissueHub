@@ -7,6 +7,7 @@ This changelog follows [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 ### Changed
 - Numerous package updates.
+- Converted from CoffeeScript to ES2015
 ### Removed
 - Deprecated testing frameworks and tests
 ### Fixed

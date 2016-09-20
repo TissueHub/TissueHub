@@ -142,12 +142,8 @@ Router.map(function() {
     template: "addspecimen",
     data: function() {
       return {
-        collection: Collections.findOne({
-          _id: this.params._id
-        }),
-        specimen: {
-          partOf: [this.params._id]
-        }
+        collection: Collections.findOne({ _id: this.params._id }),
+        specimen: { partOf: [this.params._id] }
       };
     },
     waitOn: function() {
@@ -159,9 +155,7 @@ Router.map(function() {
     template: "addspecimenbulk",
     data: function() {
       return {
-        collection: Collections.findOne({
-          _id: this.params._id
-        })
+        collection: Collections.findOne({ _id: this.params._id })
       };
     },
     waitOn: function() {
@@ -215,11 +209,7 @@ Router.onAfterAction(function() {
 Router.onBeforeAction("loading");
 
 AccountsTemplates.configureRoute("changePwd");
-
 AccountsTemplates.configureRoute("enrollAccount");
-
 AccountsTemplates.configureRoute("resetPwd");
-
 AccountsTemplates.configureRoute("signIn");
-
 AccountsTemplates.configureRoute("signUp");

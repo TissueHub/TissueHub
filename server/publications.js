@@ -39,13 +39,9 @@ Meteor.publish("usersForOrganization", function(id) {
   return Meteor.users.find({
     $or: [
       {
-        _id: {
-          $in: organization.owners || []
-        }
+        _id: { $in: organization.owners || [] }
       }, {
-        _id: {
-          $in: organization.members || []
-        }
+        _id: { $in: organization.members || [] }
       }
     ]
   });
@@ -66,10 +62,7 @@ Meteor.publish("users", function(query) {
 
 Meteor.publish("specimen", function(collectionId, specimenId) {
   return [
-    Collections.find({
-      _id: collectionId
-    }), Specimens.find({
-      _id: specimenId
-    })
+    Collections.find({ _id: collectionId }),
+    Specimens.find({ _id: specimenId })
   ];
 });

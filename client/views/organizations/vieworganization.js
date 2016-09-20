@@ -7,8 +7,6 @@ Template.vieworganization.helpers({
     return ownsOrganization(Meteor.userId(), this);
   },
   parent: function() {
-    return Organizations.findOne({
-      _id: this.memberOf
-    });
+    return Organizations.findOne({ _id: this.memberOf });
   }
 });

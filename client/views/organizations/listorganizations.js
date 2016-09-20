@@ -1,6 +1,4 @@
 
 Template.listorganizations.helpers({
-  organizations: function() {
-    return Organizations.find();
-  }
+  organizations: function() { return Organizations.find(); }
 });

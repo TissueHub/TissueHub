@@ -20,9 +20,7 @@ Template.editablememberlist.events({
     e.preventDefault();
     organizationId = Template.parentData(1)._id;
     return Organizations.update(organizationId, {
-      $push: {
-        members: $(e.target).val()
-      }
+      $push: { members: $(e.target).val() }
     });
   }
 });
@@ -33,9 +31,7 @@ Template.editablemember.events({
     e.preventDefault();
     organizationId = Template.parentData(1)._id;
     return Organizations.update(organizationId, {
-      $pull: {
-        members: this._id
-      }
+      $pull: { members: this._id }
     });
   },
   "click input.owner": function(e) {
@@ -45,19 +41,11 @@ Template.editablemember.events({
       return;
     }
     if (e.target.checked) {
-      push = {
-        owners: this._id
-      };
-      pull = {
-        members: this._id
-      };
+      push = { owners: this._id };
+      pull = { members: this._id };
     } else {
-      push = {
-        members: this._id
-      };
-      pull = {
-        owners: this._id
-      };
+      push = { members: this._id };
+      pull = { owners: this._id };
     }
     organizationId = Template.parentData(1)._id;
     return Organizations.update(organizationId, {

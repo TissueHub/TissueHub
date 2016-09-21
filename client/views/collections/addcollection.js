@@ -10,7 +10,7 @@ Template.addcollection.events({
     var collection, ref, ref1, ref2;
     e.preventDefault();
     function arrayVal(selector, e) {
-      let val = $(e.target).find(selector).val();
+      var val = $(e.target).find(selector).val();
       return val.split(",");
     }
     collection = {
